@@ -1,6 +1,6 @@
 // pages/PrintPage.js
 "use client";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useReactToPrint } from "react-to-print";
 import html2pdf from "html2pdf.js";
@@ -15,15 +15,19 @@ const PrintPage = () => {
   const pay = useSelector((state) => state.counter.paid);
   // dispatch(setPaid());
   console.log(pay);
+  const [confirm,setconfirm]=useState(false)
   const componentRef = useRef();
   console.log(useremail);
   console.log(pay);
   const handlePrint = useReactToPrint({
     content: () => componentRef.current,
   });
-
-  const handleDownloadPDF = () => {
-    console.log(pay);
+useEffect(()=>{
+  setconfirm(true);
+},[])
+        const handleDownloadPDF = () => {
+          // Your handleDownloadPDF function implementation
+          console.log(pay);
     if (useremail === "") {
       setlogin(true);
       setTimeout(() => {
@@ -45,14 +49,24 @@ const PrintPage = () => {
 
       html2pdf().from(componentRef.current).set(opt).save();
     }
-  };
+        };
+
+        // Your remaining code using html2pdf.js
+  
+  
   const isValidLink = (link) => {
     return link.startsWith('https://www.linkedin.com/') || link.startsWith('https://github.com/')
   };
   
   return (
+    <div>
+      {
+        confirm &&
+      
+  
     <div className="p-8 border border-gray-300 rounded-lg">
-      <div ref={componentRef}>
+     
+       <div ref={componentRef}>
         <div className="pb-2 flex flex-col gap-2">
           <h1 className="font-bold text-[1.7rem] uppercase">
             {formstatus.personal.name}
@@ -106,7 +120,10 @@ const PrintPage = () => {
           </div>
         </div>
       )}
+    
     </div>
+}
+</div>
   );
 };
 
