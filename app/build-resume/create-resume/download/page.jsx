@@ -139,4 +139,3 @@ const page = () => {
 }
 
 export default page
-hello
