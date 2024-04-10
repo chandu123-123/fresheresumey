@@ -37,7 +37,7 @@ const Page = () => {
     e.preventDefault();
     try {
         console.log(formData)
-        const res= await fetch("http://localhost:3000/api/signin",{
+        const res= await fetch("https://fresheresume.vercel.app/api/signin",{
           method:"POST",
           body:JSON.stringify({formData})
          })

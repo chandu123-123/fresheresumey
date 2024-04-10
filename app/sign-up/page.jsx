@@ -38,7 +38,7 @@ console.log(otp)
         
         console.log(formData)
          
-        const res= await fetch("http://localhost:3000/api/verifyotp",{
+        const res= await fetch("https://fresheresume.vercel.app/api/verifyotp",{
           method:"POST",
           body:JSON.stringify({formData})
          })
@@ -48,7 +48,7 @@ console.log(otp)
           console.log("success")
           seterr("")
       setotp(true)
-      const nodeotp=await fetch("http://localhost:3000/api/nodemailerr",{
+      const nodeotp=await fetch("https://fresheresume.vercel.app/api/nodemailerr",{
         method:"POST", 
       body:JSON.stringify({formData})
       })
@@ -80,7 +80,7 @@ if(otpcheck===otpgenerated){
         
     console.log(formData)
      
-    const res= await fetch("http://localhost:3000/api/signup",{
+    const res= await fetch("https://fresheresume.vercel.app/api/signup",{
       method:"POST",
       body:JSON.stringify({formData})
      })
