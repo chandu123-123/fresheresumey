@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { increment, decrement ,setemail,setunPaid} from "@/store/createslice";
+import { increment, decrement ,setemail,setunPaid,setForm} from "@/store/createslice";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
   const useremail = useSelector((state) => state.counter.email);
   const userpaid = useSelector((state) => state.counter.paid);
   const userloginstatus = useSelector((state) => state.counter.value);
+  const formstatus = useSelector((state) => state.counter.form);
   const [logoutalert, setlogoutalert] = useState(false);
   const [signinalert, setsigninalert] = useState(false);
   useEffect(()=>{
@@ -38,6 +39,29 @@ const Navbar = () => {
                   setsigninalert(false);
                   dispatch(setunPaid());
                   dispatch(setemail(""))
+                  dispatch(setForm({
+                    personal: {
+                      name: "",
+                        email:"",
+                        mobile:"",
+                        github:"",
+                        linkedin:""
+                
+                      
+                    },
+                    education: {
+                      collegeName: "",
+                    },
+                    skills: {
+                      skills: "",
+                    },
+                    achievements: {
+                      achievements: "",
+                    },
+                    certificates: {
+                      certificateName: "",
+                    },
+                  }))
                   setTimeout(() => {
                     setlogoutalert(false);
                    
@@ -123,6 +147,8 @@ const Navbar = () => {
                         setlogoutalert(true);
                         dispatch(setunPaid());
                         dispatch(setemail(""))
+                        dispatch(setForm({}))
+                        dispatch(setForm({}))
                         setTimeout(() => {
                           setlogoutalert(false);
                         }, 2000);

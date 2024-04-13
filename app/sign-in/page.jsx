@@ -8,7 +8,7 @@ import { increment,decrement ,setemail,setPaid,setunPaid} from "@/store/createsl
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 const Page = () => {
-
+ console.log(process.env.NEXT_PUBLIC_LOCALURL)
   const dispatch = useDispatch();
   const userloginstatus = useSelector((state) => state.counter.value);
   const useremail = useSelector((state) => state.counter.email);
@@ -37,7 +37,7 @@ const Page = () => {
     e.preventDefault();
     try {
         console.log(formData)
-        const res= await fetch("https://fresheresume.vercel.app/api/signin",{
+        const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/signin`,{
           method:"POST",
           body:JSON.stringify({formData})
          })
@@ -59,7 +59,6 @@ const Page = () => {
             dispatch(setunPaid())
            }
           setTimeout(async () => {
-            console.log("timeout")
             setsigninalert(false);
             router.push("/")
           }, 2000);

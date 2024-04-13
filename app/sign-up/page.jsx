@@ -38,7 +38,7 @@ console.log(otp)
         
         console.log(formData)
          
-        const res= await fetch("https://fresheresume.vercel.app/api/verifyotp",{
+        const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/verifyotp`,{
           method:"POST",
           body:JSON.stringify({formData})
          })
@@ -48,7 +48,7 @@ console.log(otp)
           console.log("success")
           seterr("")
       setotp(true)
-      const nodeotp=await fetch("https://fresheresume.vercel.app/api/nodemailerr",{
+      const nodeotp=await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/nodemailerr`,{
         method:"POST", 
       body:JSON.stringify({formData})
       })
@@ -80,7 +80,7 @@ if(otpcheck===otpgenerated){
         
     console.log(formData)
      
-    const res= await fetch("https://fresheresume.vercel.app/api/signup",{
+    const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/signup`,{
       method:"POST",
       body:JSON.stringify({formData})
      })
@@ -127,12 +127,17 @@ else{
         </div>
       {
         otp &&
-        <div className=" flex justify-between items-center pt-2">
-          <div className="flex flex-col gap-2">
-            <label htmlFor="">Check Your Mail</label>
-          <input type="text " value={otpcheck.value} className=" bg-white border-2" placeholder="Enter Otp"  name="otp" onChange={handleOtpChange} />
+        <div className=" flex flex-col  gap-2   items-center pt-2">
+          <div>
+          <lab
+          el htmlFor="">Check Your Mail (Resubmit if not Received )</lab>
           </div>
+          <div className=" justify-evenly">
+           
+          <input type="text " value={otpcheck.value} className=" bg-white border-2" placeholder="Enter Otp"  name="otp" onChange={handleOtpChange} />
           <button className="btn btn-success mt-2"  onClick={verify}>Verify</button>
+          </div>
+         
         </div>
       }
         {

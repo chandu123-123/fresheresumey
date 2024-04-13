@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import StoreProvider from "@/store/StoreProvider";
 import Script from 'next/script'
+import Keedbackuser from "@/components/Feedback";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,10 @@ export default function RootLayout({ children }) {
         <StoreProvider>
         <Navbar></Navbar>
         {children}
+        <Keedbackuser></Keedbackuser>
+        
         </StoreProvider>
+        
         </body>
     </html>
     <Script src="https://checkout.razorpay.com/v1/checkout.js"/>

@@ -21,7 +21,7 @@ const BuyProduct = () => {
     const key = process.env.RAZORPAY_API_KEY;
     console.log(key);
     // Make API call to the serverless API
-    const data = await fetch("https://fresheresume.vercel.app/api/razorpay");
+    const data = await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/razorpay`);
     const { order } = await data.json();
     console.log(order.id);
     const options = {
@@ -36,7 +36,7 @@ const BuyProduct = () => {
         // if (response.length==0) return <Loading/>;
         console.log(response);
 
-        const data = await  fetch("https://fresheresume.vercel.app/api/paymentverify", {
+        const data = await  fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/paymentverify`, {
           method: "POST",
           // headers: {
           //   // Authorization: 'YOUR_AUTH_HERE'
@@ -57,8 +57,9 @@ const BuyProduct = () => {
         if(res?.message=="success")
         {
           
-         const res= await fetch("https://fresheresume.vercel.app/api/updatepaid",{
+         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/updatepaid`,{
           method:"POST",
+          mode:'no-cors',
               body:JSON.stringify({useremail})}
          );
          const data=await res.json()
@@ -70,7 +71,7 @@ const BuyProduct = () => {
          }
           console.log("redirected.......")
 
-          router.push("https://fresheresume.vercel.app/paymentsuccess?paymentid="+response.razorpay_payment_id)
+          router.push(`${process.env.NEXT_PUBLIC_LOCALURL}/paymentsuccess?paymentid=`+response.razorpay_payment_id)
 
         }
 

@@ -2,7 +2,9 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
   value: false,
-  form: {},
+  form: {
+   
+  },
   paid:false,
   email:"",
 }
