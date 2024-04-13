@@ -114,7 +114,7 @@
 //             <div className="mt-4">
 //               <br />
 //             </div>
-          
+
 //           </div>
 //           {/* <button
 //         onClick={handlePrint}
@@ -149,103 +149,117 @@
 // };
 
 // export default PrintPage;
-"use client"
-import React, { useEffect, useRef, useState } from 'react';
-import ReactToPrint from 'react-to-print';
- import { useSelector, useDispatch } from "react-redux";
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import ReactToPrint from "react-to-print";
+import { useSelector, useDispatch } from "react-redux";
 const MyComponent = () => {
   const componentRef = useRef();
-    const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const useremail = useSelector((state) => state.counter.email);
 
   const [login, setlogin] = useState(false);
   const [paying, setpaying] = useState(false);
   const pay = useSelector((state) => state.counter.paid);
   // dispatch(setPaid());
+  const [print, setprint] = useState(true);
   console.log(pay);
   const [confirm, setconfirm] = useState(false);
-   const formstatus = useSelector((state) => state.counter.form);
-     const isValidLink = (link) => {
+  const formstatus = useSelector((state) => state.counter.form);
+  const isValidLink = (link) => {
     return (
       link.startsWith("https://www.linkedin.com/") ||
       link.startsWith("https://github.com/")
     );
   };
 
-    useEffect(() => {
+  useEffect(() => {
     setconfirm(true);
   }, []);
 
   return (
     <div>
       <ReactToPrint
-        trigger={() => (
-          <button>
-            Print
-          </button>
-        )}
-        content={() => componentRef.current}
+        trigger={() => <button>Print</button>}
+        content={() => {print && componentRef.current}}
         pageStyle={`@page { margin: 20mm; }`}
+        onBeforeGetContent={() => {
+          if (useremail === "") {
+            setlogin(true);
+            setprint(false);
+            setTimeout(() => {
+              setlogin(false);
+            }, 2000);
+          } else if (!pay) {
+            setprint(false);
+            setpaying(true);
+            setTimeout(() => {
+              setpaying(false); // <-- Corrected this line
+            }, 2000);
+          } else {
+            // Proceed with printing
+            setprint(true);
+          }
+        }}
       />
+
       <div ref={componentRef}>
-       
-            <div className='p-6'>
-                  {confirm && (
-        <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
-          <div ref={componentRef}>
-            <div className="pb-2 flex flex-col gap-2">
-              <h1 className="font-bold text-[1.7rem] uppercase">
-               {`   ${formstatus.personal?.name}`}
-              </h1>
-              <div className="flex gap-2">
-                <a href={`tel:${formstatus.personal?.mobile}`}>
-                  {formstatus.personal.mobile}
-                </a>
+        <div className="p-6">
+          {confirm && (
+            <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
+              <div ref={componentRef}>
+                <div className="pb-2 flex flex-col gap-2">
+                  <h1 className="font-bold text-[1.7rem] uppercase">
+                    {`   ${formstatus.personal?.name}`}
+                  </h1>
+                  <div className="flex gap-2">
+                    <a href={`tel:${formstatus.personal?.mobile}`}>
+                      {formstatus.personal.mobile}
+                    </a>
 
-                <a href={`mailto:${formstatus.personal?.email}`}>email</a>
-                <a
-                  href={` ${
-                    isValidLink(formstatus.personal?.linkedin)
-                      ? formstatus.personal.linkedin
-                      : "https://www.linkedin.com/"
-                  }`}
-                >
-                  linkedin
-                </a>
-                <a
-                  href={` ${
-                    isValidLink(formstatus.personal?.github)
-                      ? formstatus.personal.github
-                      : "https://github.com/"
-                  }`}
-                >
-                  github
-                </a>
+                    <a href={`mailto:${formstatus.personal?.email}`}>email</a>
+                    <a
+                      href={` ${
+                        isValidLink(formstatus.personal?.linkedin)
+                          ? formstatus.personal.linkedin
+                          : "https://www.linkedin.com/"
+                      }`}
+                    >
+                      linkedin
+                    </a>
+                    <a
+                      href={` ${
+                        isValidLink(formstatus.personal?.github)
+                          ? formstatus.personal.github
+                          : "https://github.com/"
+                      }`}
+                    >
+                      github
+                    </a>
+                  </div>
+                </div>
+                <hr className="pt-1" />
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Education</h1>
+
+                  <p className="">{formstatus.education?.collegeName}</p>
+                  <p className="">{formstatus.education?.intername}</p>
+                  <p className="">{formstatus.education?.schoolname}</p>
+                </div>
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Skills</h1>
+                  <h1 className="">{formstatus.skills.skills}</h1>
+                </div>
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Achievements</h1>
+                  <h1 className="">{formstatus.achievements?.one}</h1>
+                  <h1 className="">{formstatus.achievements?.two}</h1>
+                </div>
+                <div className="mt-4">
+                  <br />
+                </div>
               </div>
-            </div>
-            <hr className="pt-1" />
-            <div>
-              <h1 className="font-bold text-[1.5rem]">Education</h1>
-
-              <p className="">{formstatus.education?.collegeName}</p>
-              <p className="">{formstatus.education?.intername}</p>
-              <p className="">{formstatus.education?.schoolname}</p>
-            </div>
-            <div>
-              <h1 className="font-bold text-[1.5rem]">Skills</h1>
-              <h1 className="">{formstatus.skills.skills}</h1>
-            </div>
-            <div>
-              <h1 className="font-bold text-[1.5rem]">Achievements</h1>
-              <h1 className="">{formstatus.achievements?.one}</h1>
-              <h1 className="">{formstatus.achievements?.two}</h1>
-            </div>
-            <div className="mt-4">
-              <br />
-            </div>
-          
-          </div>
-          {/* <button
+              {/* <button
         onClick={handlePrint}
         className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
       >
@@ -257,24 +271,25 @@ const MyComponent = () => {
       >
         Download PDF
       </button> */}
-          {paying && (
-            <div className="toast toast-top toast-center">
-              <div className="alert alert-info">
-                <span>You were not paid</span>
-              </div>
-            </div>
-          )}
-          {login && (
-            <div className="toast toast-top toast-center">
-              <div className="alert alert-info">
-                <span>please Login</span>
-              </div>
+              {paying && (
+                <div className="toast toast-top toast-center">
+                  <div className="alert alert-info">
+                    <span>You were not paid</span>
+                  </div>
+                </div>
+              )}
+              {login && (
+                <div className="toast toast-top toast-center">
+                  <div className="alert alert-info">
+                    <span>please Login</span>
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </div>
-      )}
-    </div>
       </div>
+      
     </div>
   );
 };
