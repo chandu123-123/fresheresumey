@@ -11,19 +11,19 @@ const BuyProduct = () => {
   const router = useRouter()
   const dispatch = useDispatch();
   const useremail = useSelector((state) => state.counter.email);
-  console.log(useremail)
+  //console.log(useremail)
   const userpaid = useSelector((state) => state.counter.paid);
   useEffect(()=>{
-    console.log(userpaid)
+   // console.log(userpaid)
   })
   const makePayment = async ({ productId = null }) => {
     // "use server"
     const key = process.env.RAZORPAY_API_KEY;
-    console.log(key);
+    //console.log(key);
     // Make API call to the serverless API
     const data = await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/razorpay`);
     const { order } = await data.json();
-    console.log(order.id);
+ //   console.log(order.id);
     const options = {
       key: key,
       name: "FresheResume",
@@ -34,7 +34,7 @@ const BuyProduct = () => {
       // image: logoBase64,
       handler: async function (response) {
         // if (response.length==0) return <Loading/>;
-        console.log(response);
+      //  console.log(response);
 
         const data = await  fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/paymentverify`, {
           method: "POST",
@@ -52,7 +52,7 @@ const BuyProduct = () => {
 
         const res = await data.json();
 
-        console.log("response verify==",res)
+       // console.log("response verify==",res)
 
         if(res?.message=="success")
         {
@@ -69,7 +69,7 @@ const BuyProduct = () => {
          else{
           dispatch(setunPaid())
          }
-          console.log("redirected.......")
+        //  console.log("redirected.......")
 
           router.push(`${process.env.NEXT_PUBLIC_LOCALURL}/paymentsuccess?paymentid=`+response.razorpay_payment_id)
 

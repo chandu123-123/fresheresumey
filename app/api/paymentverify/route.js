@@ -3,7 +3,7 @@ import Razorpay from "razorpay";
 import shortid from "shortid";
 import crypto from "crypto";
 // import Payment from "@/lib/model"
-console.log("hello")
+
 // import { dbconnection } from "@/lib/database";
 const instance = new Razorpay({
     key_id: process.env.RAZORPAY_API_KEY,
@@ -15,7 +15,7 @@ export async function POST(req,res) {
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
   await req.json();
    const body = razorpay_order_id + "|" + razorpay_payment_id;
-console.log("id==",body)
+//console.log("id==",body)
 
  const expectedSignature = crypto
    .createHmac("sha256", process.env.RAZORPAY_API_SECRET)

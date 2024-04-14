@@ -9,18 +9,18 @@ const Page = () => {
   const router =useRouter()
   const dispatch = useDispatch();
   const userloginstatus = useSelector((state) => state.counter.value);
-  console.log(userloginstatus)
+  
   const write="/buildresume/write.png"
   const select="/buildresume/select.png"
   const download="/buildresume/download.png"
   useEffect(() => {
-    console.log("hello")
+    
     if (!userloginstatus) {
     setTimeout(async () => {
-        console.log("inner")
+       
         router.push("/sign-in")
       }, 2000);
-     console.log("check")
+    
      
     }
   }, [userloginstatus]);
@@ -55,17 +55,17 @@ const Page = () => {
         <div>
        <div className='flex justify-center flex-col  items-center gap-5 md:flex-row md:gap-20 md:pt-32 mt-10 '>
         <div className='flex flex-col gap-5 justify-center items-center'>
-          <Image src={select} width={100} height={100}></Image>
+          <Image src={select} width={100} height={100} alt='template select'></Image>
           <h1>Select Template</h1>
         </div>
         
         <div className='flex flex-col gap-5 justify-center items-center'>
-          <Image src={write} width={100} height={100}></Image>
+          <Image src={write} width={100} height={100} alt='write info'></Image>
           <h1>Complete Information</h1>
         </div>
         
         <div className='flex flex-col gap-5 justify-center items-center'>
-          <Image src={download} width={100} height={100}></Image>
+          <Image src={download} width={100} height={100} alt='download'></Image>
           <h1>Download Resume</h1>
         </div>
         </div>

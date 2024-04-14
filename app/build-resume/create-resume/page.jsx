@@ -12,7 +12,7 @@ const Page = () => {
   const userpaid = useSelector((state) => state.counter.paid);
   const formstatus = useSelector((state) => state.counter.form);
   const [status,setstatus]=useState("Submit");
-  console.log(formstatus);
+  
   const [formData, setFormData] = useState({
     personal: {
       name: "",
@@ -65,7 +65,7 @@ const Page = () => {
     }));
   };
   useEffect(() => {
-    console.log(formstatus);
+   
     if (userpaid) {
       setFormData(formstatus);
     }
@@ -74,11 +74,11 @@ const Page = () => {
     e.preventDefault();
   setstatus("loading")
     // Access formData object containing all sections
-    console.log(formData);
+ 
     dispatch(setForm(formData));
     setFormData(formstatus);
     // Add logic to handle form submission
-    console.log(formstatus);
+   
     setstatus("Submit")
     router.push(`/build-resume/create-resume/download`);
     // query: { formData: JSON.stringify(formData) },

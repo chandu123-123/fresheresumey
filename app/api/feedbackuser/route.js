@@ -15,7 +15,7 @@ export async function POST(req, res) {
     });
     usersfeed.save();
   } catch (err) {
-    console.log(err);
+ 
     return NextResponse.json({ msg: `${err._message}` });
   }
 

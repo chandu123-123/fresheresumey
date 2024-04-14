@@ -15,9 +15,9 @@ const Navbar = () => {
   const [logoutalert, setlogoutalert] = useState(false);
   const [signinalert, setsigninalert] = useState(false);
   useEffect(()=>{
-    console.log(useremail)
+    //console.log(useremail)
   })
-  console.log(userloginstatus);
+ // console.log(userloginstatus);
   return (
     <div className="py-4 max-w-[90%] mx-auto flex justify-between items-center">
       <div>

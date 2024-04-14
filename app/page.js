@@ -19,9 +19,9 @@ const page = () => {
         </div>
        <Homecreate></Homecreate>
       </div>
-      <div className="mt-20 flex justify-evenly items-center gap-1 p-2 flex-col md:flex-row">
+      <div className="mt-20 flex justify-evenly items-center  p-2 gap-8 flex-col md:flex-row">
         <Image src={image} className="rounded-lg" width={300} alt="resume img" height={200}></Image>
-        <h1 className="text-[2rem] p-2 font-light" >No more Confusion</h1>
+        <h1 className="text-[2rem] p-2 font-light font-poppins" >No more Confusion</h1>
       </div>
  
     </div>

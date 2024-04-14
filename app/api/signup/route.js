@@ -15,7 +15,7 @@ export async function POST(req, res) {
     throw new Error("Already Account Created")
   }
   const pass=await bcrypt.hash(password,10);
-  console.log(pass)
+
   const newuser=new userlogin({
     username,
     email,

@@ -15,10 +15,10 @@ export async function POST(req,res){
             throw new Error("Enter details correctly");
         }
        const user=await userlogin.find({email})
-       console.log(user[0])
+    
        if(user.length!=0){
        const check=await bcrypt.compare(password,user[0].password);
-       console.log(check)
+      
        if(check){
        return NextResponse.json({msg:"success",email,paid:user[0].paid})
        }

@@ -14,7 +14,7 @@ const Success = () => {
     const paid = useSelector((state) => state.counter.paid);
     
     useEffect(()=>{
-        console.log(paid)
+    
     },[])
     if(paymentid){
     dispatch(setPaid())

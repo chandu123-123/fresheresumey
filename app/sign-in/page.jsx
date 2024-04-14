@@ -8,12 +8,12 @@ import { increment,decrement ,setemail,setPaid,setunPaid} from "@/store/createsl
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 const Page = () => {
- console.log(process.env.NEXT_PUBLIC_LOCALURL)
+ 
   const dispatch = useDispatch();
   const userloginstatus = useSelector((state) => state.counter.value);
   const useremail = useSelector((state) => state.counter.email);
   const userpaid = useSelector((state) => state.counter.paid);
-  console.log(userloginstatus+" useree")
+
   const router=useRouter()
   const [signinalert, setsigninalert] = useState(false);
   const [err,seterr]=useState("")
@@ -30,7 +30,7 @@ const Page = () => {
     ...prevFormData,
     [name]: value,
   }));
-    console.log(formData)
+   
   };
 
   const handleSubmit = async (e) => {
@@ -38,21 +38,21 @@ const Page = () => {
     e.preventDefault();
     setstatus("loading")
     try {
-        console.log(formData)
+       
         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/signin`,{
           method:"POST",
           body:JSON.stringify({formData})
          })
          const data=await res.json()
          setstatus("Submit")
-         console.log(data)
+        
          if(data.msg==="success"){
           console.log("success")
       
             seterr("")
-            console.log(useremail)
+            //console.log(useremail)
             dispatch(setemail(data.email));
-            console.log(useremail)
+           // console.log(useremail)
              dispatch(increment())
            setsigninalert(true)
            if(data.paid==true){
@@ -65,12 +65,12 @@ const Page = () => {
             setsigninalert(false);
             router.push("/")
           }, 2000);
-          console.log(userloginstatus)
+         // console.log(userloginstatus)
          
          }
          else{
           seterr(data.msg)
-            console.log(data.msg)
+           // console.log(data.msg)
          }
         // Get the message from the response
     

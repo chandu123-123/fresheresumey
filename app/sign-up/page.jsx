@@ -17,7 +17,7 @@ const Page = () => {
     email: "",
     password: "",
   });
-console.log(otp)
+//console.log(otp)
   const handleChange = (e) => {
     const { name, value } = e.target;
     setotp(false)
@@ -26,7 +26,7 @@ console.log(otp)
     ...prevFormData,
     [name]: value,
   }));
-    console.log(formData)
+    //console.log(formData)
   };
   const [otpcheck,setotpcheck]=useState({
     value:""
@@ -40,17 +40,17 @@ console.log(otp)
     setstatus("loading")
     try {
         
-        console.log(formData)
+        //console.log(formData)
          
         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/verifyotp`,{
           method:"POST",
           body:JSON.stringify({formData})
          })
          const data=await res.json()
-         console.log(data)
+        // console.log(data)
          setstatus("Submit")
          if(data.msg==="success"){
-          console.log("success")
+        //  console.log("success")
           seterr("")
       setotp(true)
       const nodeotp=await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/nodemailerr`,{
@@ -59,13 +59,13 @@ console.log(otp)
       })
 const nodotp=await nodeotp.json();
 setotpgenerated(nodotp.otp)
-console.log(nodotp)
-console.log(nodotp)
+//console.log(nodotp)
+//console.log(nodotp)
           //router.push("/sign-in")
          }
          else{
           seterr(data.msg)
-            console.log(data.msg)
+            //console.log(data.msg)
          }
         // Get the message from the response
     } catch (error) {
@@ -78,28 +78,28 @@ console.log(nodotp)
   };
 const verify=async (e)=>{
   e.preventDefault()
-console.log(otpcheck)
+//console.log(otpcheck)
 
 if(otpcheck===otpgenerated){
   try {
         
-    console.log(formData)
+    //console.log(formData)
      
     const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/signup`,{
       method:"POST",
       body:JSON.stringify({formData})
      })
      const data=await res.json()
-     console.log(data)
+    // console.log(data)
      if(data.msg==="success"){
-      console.log("success")
+     // console.log("success")
       seterr("")
       router.push("sign-in")
       //router.push("/sign-in")
      }
      else{
       seterr(data.msg)
-        console.log(data.msg)
+        //console.log(data.msg)
      }
     // Get the message from the response
 } catch (error) {
