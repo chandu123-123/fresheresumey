@@ -4,7 +4,9 @@ import React, { useEffect, useState } from "react";
 import { increment, decrement ,setemail,setunPaid,setForm} from "@/store/createslice";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
+import Image from "next/image";
 const Navbar = () => {
+  const logo="/images/logo.png"
   const dispatch = useDispatch();
   const useremail = useSelector((state) => state.counter.email);
   const userpaid = useSelector((state) => state.counter.paid);
@@ -19,7 +21,9 @@ const Navbar = () => {
   return (
     <div className="py-4 max-w-[90%] mx-auto flex justify-between items-center">
       <div>
-        <Link href="/">Logo</Link>
+        <Link href="/">
+          <Image src={logo} width={50} height={50} className="rounded-lg" alt="logo"></Image>
+        </Link>
       </div>
       <div className="hidden  md:block">
         <ul className="flex gap-5 items-center">

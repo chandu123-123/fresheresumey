@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 import Button from "@/components/Button";
+import Loader from "@/components/Loader";
 
 const Page = () => {
   const router=useRouter()
   const [err,seterr]=useState("")
  const [otp,setotp]=useState(false);
+ const [status,setstatus]=useState("Submit");
  const [otpgenerated,setotpgenerated]=useState(false);
   const [formData, setFormData] = useState({
     username: "",
@@ -33,7 +35,9 @@ console.log(otp)
  
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
+    setstatus("loading")
     try {
         
         console.log(formData)
@@ -44,6 +48,7 @@ console.log(otp)
          })
          const data=await res.json()
          console.log(data)
+         setstatus("Submit")
          if(data.msg==="success"){
           console.log("success")
           seterr("")
@@ -123,11 +128,12 @@ else{
         </label>
         <input type="password" name="password"  value={formData.password} onChange={handleChange} className="p-1 bg-white border-2" />
         <div className="pt-4">
-        <Button name={"Submit"}></Button>
+        <Button name={status}></Button>
         </div>
       {
-        otp &&
+        otp && 
         <div className=" flex flex-col  gap-2   items-center pt-2">
+        
           <div>
           <lab
           el htmlFor="">Check Your Mail (Resubmit if not Received )</lab>

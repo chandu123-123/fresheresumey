@@ -9,8 +9,8 @@ const Button = ({name}) => {
     <div>
    {
     pending?<button className="btn btn-outline btn-success w-full ">
-   <span className="loading loading-dots loading-md"></span> 
-    </button>:  <button className="btn btn-outline btn-success w-full ">
+   <span className="loading loading-dots loading-md">loading</span> 
+    </button>:  <button className="btn btn-outline btn-success w-full " >
     {name}
     </button>
    }     

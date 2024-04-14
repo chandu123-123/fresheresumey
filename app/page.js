@@ -1,5 +1,6 @@
 import Homecreate from "@/components/Homecreate";
 import Typewrite from "@/components/Typewrite";
+
 import Image from "next/image";
 import React from "react";
 
@@ -18,10 +19,11 @@ const page = () => {
         </div>
        <Homecreate></Homecreate>
       </div>
-      <div className="mt-20 flex justify-evenly items-center gap-1 p-2 flex-col md:flex">
-        <Image src={image} width={300} alt="resume img" height={200}></Image>
-        <h1 className="text-[2rem] p-2" >No more Confusion</h1>
+      <div className="mt-20 flex justify-evenly items-center gap-1 p-2 flex-col md:flex-row">
+        <Image src={image} className="rounded-lg" width={300} alt="resume img" height={200}></Image>
+        <h1 className="text-[2rem] p-2 font-light" >No more Confusion</h1>
       </div>
+ 
     </div>
   );
 };

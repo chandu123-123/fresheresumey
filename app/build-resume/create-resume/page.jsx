@@ -11,6 +11,7 @@ const Page = () => {
   const dispatch = useDispatch();
   const userpaid = useSelector((state) => state.counter.paid);
   const formstatus = useSelector((state) => state.counter.form);
+  const [status,setstatus]=useState("Submit");
   console.log(formstatus);
   const [formData, setFormData] = useState({
     personal: {
@@ -71,13 +72,14 @@ const Page = () => {
   }, [formstatus]);
   const handleSubmit = (e) => {
     e.preventDefault();
-
+  setstatus("loading")
     // Access formData object containing all sections
     console.log(formData);
     dispatch(setForm(formData));
     setFormData(formstatus);
     // Add logic to handle form submission
     console.log(formstatus);
+    setstatus("Submit")
     router.push(`/build-resume/create-resume/download`);
     // query: { formData: JSON.stringify(formData) },
   };
@@ -241,7 +243,7 @@ const Page = () => {
         </div>
 
         <button type="submit" className="btn btn-primary mt-4">
-          Submit
+           {status}
         </button>
       </form>
     </div>

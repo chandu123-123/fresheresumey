@@ -17,7 +17,7 @@ const Page = () => {
   const router=useRouter()
   const [signinalert, setsigninalert] = useState(false);
   const [err,seterr]=useState("")
-
+  const [status,setstatus]=useState("Submit");
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -34,7 +34,9 @@ const Page = () => {
   };
 
   const handleSubmit = async (e) => {
+    
     e.preventDefault();
+    setstatus("loading")
     try {
         console.log(formData)
         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/signin`,{
@@ -42,6 +44,7 @@ const Page = () => {
           body:JSON.stringify({formData})
          })
          const data=await res.json()
+         setstatus("Submit")
          console.log(data)
          if(data.msg==="success"){
           console.log("success")
@@ -70,6 +73,7 @@ const Page = () => {
             console.log(data.msg)
          }
         // Get the message from the response
+    
     } catch (error) {
       
       // Handle signup failure
@@ -91,7 +95,7 @@ const Page = () => {
         </label>
         <input type="password" name="password" value={formData.password} onChange={handleChange} className="bg-white border-2 p-1" />
         <div className="pt-4">
-       <Button name={"Submit"}></Button>
+       <Button name={status}></Button>
         </div>
         {
           err&&<h1 className="mt-6 text-red-600">{err}</h1>
