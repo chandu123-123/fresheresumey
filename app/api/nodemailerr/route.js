@@ -20,7 +20,7 @@ export async function POST(req, res) {
       pass: "geal qzlf kfby sfth",
     },
   });
- 
+ console.log("fdsa")
   const mailOptions = {
     from: "chandancheripallyssr@gmail.com",
     to:email,

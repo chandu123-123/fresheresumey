@@ -173,7 +173,7 @@ const MyComponent = forwardRef((props, ref) => {
   const pageStyle = `{ margins:20inch}`;
 
   const handlePrint = useReactToPrint({
-    content: () => contentRef.current,
+    content: () => (print && contentRef.current),
     pageStyle: `@page { margin: 20mm; }`,
     onBeforeGetContent: () => {
       if (useremail === "") {

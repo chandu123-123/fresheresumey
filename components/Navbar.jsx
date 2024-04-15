@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 const Navbar = () => {
   const logo="/images/logo.png"
+  const router=useRouter()
   const dispatch = useDispatch();
   const useremail = useSelector((state) => state.counter.email);
   const userpaid = useSelector((state) => state.counter.paid);
@@ -68,7 +69,7 @@ const Navbar = () => {
                   }))
                   setTimeout(() => {
                     setlogoutalert(false);
-                   
+                    router.push("/signin")
                   }, 2000);
                 }}
               >
@@ -155,6 +156,7 @@ const Navbar = () => {
                         dispatch(setForm({}))
                         setTimeout(() => {
                           setlogoutalert(false);
+                          router.push("/signin")
                         }, 2000);
                       }}
                     >

@@ -41,6 +41,7 @@ const Page = () => {
        
         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/signin`,{
           method:"POST",
+          mode:"no-cors",
           body:JSON.stringify({formData})
          })
          const data=await res.json()
