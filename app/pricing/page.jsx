@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="flex justify-center mt-[4rem] drop-shadow-lg">
+    <div className="flex justify-center mt-[4rem] drop-shadow-lg ">
       <div className="card w-96 glass ">
         <div className="text-center p-3 bg-gray-300">
           <div className="font-bold uppercase text-[2rem]">Student Offer</div>

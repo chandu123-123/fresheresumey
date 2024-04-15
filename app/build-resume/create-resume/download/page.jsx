@@ -202,7 +202,7 @@ const MyComponent = forwardRef((props, ref) => {
   }, [ref]);
 
   return (
-    <div>
+    <div >
       <button onClick={handlePrint}>Print</button>
       <div className="p-6">
         {confirm && (

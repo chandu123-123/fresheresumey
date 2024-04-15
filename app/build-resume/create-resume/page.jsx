@@ -85,7 +85,7 @@ const Page = () => {
   };
 
   return (
-    <div className="p-2">
+    <div className="p-2 ">
       <form onSubmit={handleSubmit}>
         <div className="join join-vertical w-full">
           <div className="collapse collapse-arrow join-item border border-base-300">

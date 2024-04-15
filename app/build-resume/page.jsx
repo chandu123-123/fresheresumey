@@ -26,7 +26,7 @@ const Page = () => {
   }, [userloginstatus]);
  
   return (
-    <div>
+    <div >
      <div className='flex justify-center '>
       {
         !userloginstatus &&

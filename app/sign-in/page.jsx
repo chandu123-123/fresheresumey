@@ -83,7 +83,7 @@ const Page = () => {
 
 
   return (
-    <div className="flex justify-center mt-[20px]">
+    <div className="flex justify-center mt-[20px] ">
       <form onSubmit={handleSubmit} className=" flex flex-col w-[400px] justify-center p-6">
         <h1 className="text-center font-bold text-[3rem]">Sign-In</h1>
 
