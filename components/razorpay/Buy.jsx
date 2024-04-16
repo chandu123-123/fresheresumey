@@ -16,11 +16,11 @@ const router=useRouter()
     if (useremail.length == 0) {
       setload("")
       setmessage("Please login in");
-      router.push("/sign-in")
+      
       setTimeout(async () => {
         setmessage("");
         //console.log("hellllo")
-        
+        router.push("/sign-in")
       }, 2000);
     } else {
       if (userpaid === true) {
