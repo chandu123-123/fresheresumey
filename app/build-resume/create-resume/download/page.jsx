@@ -153,9 +153,11 @@
 import React, { useEffect, useRef, useState, forwardRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 
 const MyComponent = forwardRef((props, ref) => {
   const dispatch = useDispatch();
+  const router=useRouter()
   const useremail = useSelector((state) => state.counter.email);
   const [login, setLogin] = useState(false);
   const [paying, setPaying] = useState(false);
@@ -171,27 +173,45 @@ const MyComponent = forwardRef((props, ref) => {
     );
   };
   const pageStyle = `{ margins:20inch}`;
-
+const handlecheck=()=>{
+  if (useremail === "") {
+    setLogin(true);
+    setPrint(false);
+    setTimeout(() => {
+      setLogin(false);
+      router.push("/sign-in")
+    }, 1500);
+  } else if (!pay) {
+    setPrint(false);
+    setPaying(true);
+    setTimeout(() => {
+      setPaying(false);
+      router.push("/pricing")
+    }, 1500);
+  } else {
+    handlePrint()
+  }
+}
   const handlePrint = useReactToPrint({
-    content: () => (print && contentRef.current),
+    content: () => contentRef.current,
     pageStyle: `@page { margin: 20mm; }`,
-    onBeforeGetContent: () => {
-      if (useremail === "") {
-        setLogin(true);
-        setPrint(false);
-        setTimeout(() => {
-          setLogin(false);
-        }, 2000);
-      } else if (!pay) {
-        setPrint(false);
-        setPaying(true);
-        setTimeout(() => {
-          setPaying(false);
-        }, 2000);
-      } else {
-        setPrint(true);
-      }
-    }
+    // onBeforeGetContent: () => {
+    //   if (useremail === "") {
+    //     setLogin(true);
+    //     setPrint(false);
+    //     setTimeout(() => {
+    //       setLogin(false);
+    //     }, 2000);
+    //   } else if (!pay) {
+    //     setPrint(false);
+    //     setPaying(true);
+    //     setTimeout(() => {
+    //       setPaying(false);
+    //     }, 2000);
+    //   } else {
+    //     setPrint(true);
+    //   }
+    // }
   });
 
   useEffect(() => {
@@ -203,7 +223,7 @@ const MyComponent = forwardRef((props, ref) => {
 
   return (
     <div >
-      <button onClick={handlePrint}>Print</button>
+      <button onClick={handlecheck}>Print</button>
       <div className="p-6">
         {confirm && (
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">

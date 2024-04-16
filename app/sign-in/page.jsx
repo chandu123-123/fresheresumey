@@ -22,7 +22,9 @@ const Page = () => {
     email: "",
     password: "",
   });
-
+  if(useremail.length!=0){
+       router.push("/")
+  }
   const handleChange = (e) => {
     const { name, value } = e.target;
     seterr("")

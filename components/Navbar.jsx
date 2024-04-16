@@ -69,7 +69,7 @@ const Navbar = () => {
                   }))
                   setTimeout(() => {
                     setlogoutalert(false);
-                    router.push("/signin")
+                    router.push("/sign-in")
                   }, 2000);
                 }}
               >
@@ -156,7 +156,7 @@ const Navbar = () => {
                         dispatch(setForm({}))
                         setTimeout(() => {
                           setlogoutalert(false);
-                          router.push("/signin")
+                          router.push("/sign-in")
                         }, 2000);
                       }}
                     >
