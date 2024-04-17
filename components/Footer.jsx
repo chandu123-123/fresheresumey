@@ -18,7 +18,12 @@ const Footer = () => {
             Privacy Policy
             </Link>
         </li>
-
+        <li>
+        <Link href="/refund">
+            
+          Refund Policy
+            </Link>
+        </li>
         <li>
         <Link href="/contact-us">
             
