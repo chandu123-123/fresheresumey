@@ -229,13 +229,17 @@ const MyComponent = forwardRef((props, ref) => {
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
               <div className="pb-2 flex flex-col gap-2">
+                {  formStatus.personal.name &&
                 <h1 className="font-bold text-[1.7rem] uppercase">
                   {`   ${formStatus.personal?.name}`}
                 </h1>
-                <div className="flex gap-2">
+}
+                <div className="flex gap-2">{
+
+formStatus.personal.mobile &&
                   <a href={`tel:${formStatus.personal?.mobile}`}>
                     {formStatus.personal.mobile}
-                  </a>
+                  </a>}
                   {  formStatus.personal.email && <a href={`mailto:${formStatus.personal?.email}`}>email</a>}
                  {
                   formStatus.personal.linkedin  &&
