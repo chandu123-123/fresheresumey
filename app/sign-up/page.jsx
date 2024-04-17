@@ -58,6 +58,7 @@ const Page = () => {
       body:JSON.stringify({formData})
       })
 const nodotp=await nodeotp.json();
+console.log(nodotp)
 setotpgenerated(nodotp.otp)
 //console.log(nodotp)
 //console.log(nodotp)

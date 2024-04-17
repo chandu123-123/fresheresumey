@@ -16,13 +16,13 @@ export async function POST(req, res) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "contactfresheresume@gmail.com",
-      pass: "gnlr cahn aigy hruv",
+      user: "chandancheripallyssr@gmail.com",
+      pass: "foxp hnvh fahu gija",
     },
   });
- console.log("fdsa")
+
   const mailOptions = {
-    from: "contactfresheresume@gmail.com",
+    from: "chandancheripallyssr@gmail.com",
     to:email,
     subject:"otp verification",
     text: (Math.floor(Math.random() * 900000) + 100000).toString(),
@@ -30,9 +30,10 @@ export async function POST(req, res) {
 
   try {
     await transporter.sendMail(mailOptions);
-  
+
     return NextResponse.json({ msg: "success", otp: mailOptions.text });
   } catch (error) {
+    console.log("fdsa")
     return NextResponse.error("failed to send error", 500);
   }
 }
