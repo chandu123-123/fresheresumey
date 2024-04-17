@@ -21,6 +21,15 @@ const Page = () => {
       github: "",
       linkedin: "",
     },
+    objective:{
+       reason:"",
+    },
+    internships:{
+      reason:"",
+    },
+    projects:{
+      reason:"",
+    },
     education: {
       collegeName: "",
       intername:"",
@@ -29,13 +38,17 @@ const Page = () => {
     skills: {
       skills: "",
     },
+    hobbies:{
+      reason:"",
+    },
+      certificates: {
+      certificateName: "",
+    },
     achievements: {
       one:"",
       two:"",
     },
-    certificates: {
-      certificateName: "",
-    },
+  
   });
   const handleAddAchievement = () => {
     setFormData((prevFormData) => ({
@@ -195,7 +208,7 @@ const Page = () => {
               />
             </div>
           </div>
-          <div className="collapse collapse-arrow join-item border border-base-300">
+          {/* <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">
               Certificates
@@ -211,7 +224,7 @@ const Page = () => {
                 className="bg-white border-2 p-1"
               />
             </div>
-          </div>
+          </div> */}
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">
@@ -221,21 +234,14 @@ const Page = () => {
               <textarea
                 type="text"
                 placeholder="one"
+                rows={6}
                 value={formData.achievements?.one}
                 onChange={(e) =>
                   handleChange("achievements", "one", e.target.value)
                 }
-                className="bg-white border-2 p-1"
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
-                <textarea
-                type="text"
-                placeholder="two"
-                value={formData.achievements?.two}
-                onChange={(e) =>
-                  handleChange("achievements", "two", e.target.value)
-                }
-                className="bg-white border-2 p-1"
-              />
+              
             </div> 
            
           </div>

@@ -2,8 +2,16 @@ import React from 'react'
 
 const page = () => {
   return (
-    <div>
+    <div className='p-5 min-h-screen center'>
       
+   
+   
+      <h1 className='text-[2rem]'><strong>contact us</strong></h1>
+      <p>If you have any queries , please contact us through </p>
+      <a href="mail:to">contactfresheresume@gmail.com</a>
+  
+
+
     </div>
   )
 }

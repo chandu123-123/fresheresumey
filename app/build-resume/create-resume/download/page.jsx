@@ -157,7 +157,7 @@ import { useRouter } from "next/navigation";
 
 const MyComponent = forwardRef((props, ref) => {
   const dispatch = useDispatch();
-  const router=useRouter()
+  const router = useRouter();
   const useremail = useSelector((state) => state.counter.email);
   const [login, setLogin] = useState(false);
   const [paying, setPaying] = useState(false);
@@ -172,29 +172,29 @@ const MyComponent = forwardRef((props, ref) => {
       link?.startsWith("https://github.com/")
     );
   };
-  const pageStyle = `{ margins:20inch}`;
-const handlecheck=()=>{
-  if (useremail === "") {
-    setLogin(true);
-    setPrint(false);
-    setTimeout(() => {
-      setLogin(false);
-      router.push("/sign-in")
-    }, 1500);
-  } else if (!pay) {
-    setPrint(false);
-    setPaying(true);
-    setTimeout(() => {
-      setPaying(false);
-      router.push("/pricing")
-    }, 1500);
-  } else {
-    handlePrint()
-  }
-}
+  const pageStyle = `{ margins:10inch}`;
+  const handlecheck = () => {
+    if (useremail === "") {
+      setLogin(true);
+      setPrint(false);
+      setTimeout(() => {
+        setLogin(false);
+        router.push("/sign-in");
+      }, 1500);
+    } else if (!pay) {
+      setPrint(false);
+      setPaying(true);
+      setTimeout(() => {
+        setPaying(false);
+        router.push("/pricing");
+      }, 1500);
+    } else {
+      handlePrint();
+    }
+  };
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
-    pageStyle: `@page { margin: 20mm; }`,
+    pageStyle: `@page { margin: 8mm; } `,
     // onBeforeGetContent: () => {
     //   if (useremail === "") {
     //     setLogin(true);
@@ -222,7 +222,7 @@ const handlecheck=()=>{
   }, [ref]);
 
   return (
-    <div >
+    <div>
       <button onClick={handlecheck}>Print</button>
       <div className="p-6">
         {confirm && (
@@ -236,8 +236,9 @@ const handlecheck=()=>{
                   <a href={`tel:${formStatus.personal?.mobile}`}>
                     {formStatus.personal.mobile}
                   </a>
-
-                  <a href={`mailto:${formStatus.personal?.email}`}>email</a>
+                  {  formStatus.personal.email && <a href={`mailto:${formStatus.personal?.email}`}>email</a>}
+                 {
+                  formStatus.personal.linkedin  &&
                   <a
                     href={` ${
                       isValidLink(formStatus.personal?.linkedin)
@@ -246,8 +247,10 @@ const handlecheck=()=>{
                     }`}
                   >
                     linkedin
-                  </a>
-                  <a
+                  </a>}
+                  { 
+                      formStatus.personal.github  && 
+                      <a
                     href={` ${
                       isValidLink(formStatus.personal?.github)
                         ? formStatus.personal.github
@@ -255,7 +258,7 @@ const handlecheck=()=>{
                     }`}
                   >
                     github
-                  </a>
+                  </a>}
                 </div>
               </div>
               <hr className="pt-1" />
@@ -272,8 +275,14 @@ const handlecheck=()=>{
               </div>
               <div>
                 <h1 className="font-bold text-[1.5rem]">Achievements</h1>
-                <h1 className="">{formStatus.achievements?.one}</h1>
-                <h1 className="">{formStatus.achievements?.two}</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.achievements?.one?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
               </div>
               <div className="mt-4">
                 <br />
@@ -299,5 +308,5 @@ const handlecheck=()=>{
     </div>
   );
 });
-MyComponent.displayName = 'MyComponent';
+MyComponent.displayName = "MyComponent";
 export default MyComponent;
