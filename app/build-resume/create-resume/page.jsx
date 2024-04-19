@@ -11,8 +11,8 @@ const Page = () => {
   const dispatch = useDispatch();
   const userpaid = useSelector((state) => state.counter.paid);
   const formstatus = useSelector((state) => state.counter.form);
-  const [status,setstatus]=useState("Submit");
-  
+  const [status, setstatus] = useState("Submit");
+
   const [formData, setFormData] = useState({
     personal: {
       name: "",
@@ -21,34 +21,25 @@ const Page = () => {
       github: "",
       linkedin: "",
     },
-    objective:{
-       reason:"",
+    internships: {
+      reason: "",
     },
-    internships:{
-      reason:"",
-    },
-    projects:{
-      reason:"",
+    projects: {
+      reason: "",
     },
     education: {
-      collegeName: "",
-      intername:"",
-      schoolname:"",
+  reason:"",
     },
     skills: {
       skills: "",
     },
-    hobbies:{
-      reason:"",
-    },
-      certificates: {
-      certificateName: "",
-    },
     achievements: {
-      one:"",
-      two:"",
+      one: "",
+      two: "",
     },
-  
+    interests:{
+      reason:""
+    },
   });
   const handleAddAchievement = () => {
     setFormData((prevFormData) => ({
@@ -78,21 +69,20 @@ const Page = () => {
     }));
   };
   useEffect(() => {
-   
     if (userpaid) {
       setFormData(formstatus);
     }
   }, [formstatus]);
   const handleSubmit = (e) => {
     e.preventDefault();
-  setstatus("loading")
+    setstatus("loading");
     // Access formData object containing all sections
- 
+
     dispatch(setForm(formData));
     setFormData(formstatus);
     // Add logic to handle form submission
-   
-    setstatus("Submit")
+
+    setstatus("Submit");
     router.push(`/build-resume/create-resume/download`);
     // query: { formData: JSON.stringify(formData) },
   };
@@ -163,41 +153,25 @@ const Page = () => {
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">Education</div>
-            <div className="collapse-content">
-              <input
+            <div className="collapse-content flex flex-col">
+            <textarea
                 type="text"
-                placeholder="Btech/degree"
-                value={formData.education?.collegeName}
+                placeholder="Education"
+                rows={6}
+                value={formData.education?.reason}
                 onChange={(e) =>
-                  handleChange("education", "collegeName", e.target.value)
+                  handleChange("education", "reason", e.target.value)
                 }
-                className="bg-white border-2 p-1"
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
-               <input
-                type="text"
-                placeholder="Intername"
-                value={formData.education?.intername}
-                onChange={(e) =>
-                  handleChange("education", "intername", e.target.value)
-                }
-                className="bg-white border-2 p-1"
-              />
-               <input
-                type="text"
-                placeholder="schoolname"
-                value={formData.education?.schoolname}
-                onChange={(e) =>
-                  handleChange("education", "schoolname", e.target.value)
-                }
-                className="bg-white border-2 p-1"
-              />
+            
             </div>
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">Skills</div>
-            <div className="collapse-content">
-              <input
+            <div className="collapse-content flex flex-col">
+              {/* <input
                 type="text"
                 placeholder="skills"
                 value={formData.skills?.skills}
@@ -205,6 +179,16 @@ const Page = () => {
                   handleChange("skills", "skills", e.target.value)
                 }
                 className="bg-white border-2 p-1"
+              /> */}
+              <textarea
+                type="text"
+                placeholder="skills"
+                rows={6}
+                value={formData.skills?.skills}
+                onChange={(e) =>
+                  handleChange("skills", "skills", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
             </div>
           </div>
@@ -228,12 +212,49 @@ const Page = () => {
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">
+             Internships
+            </div>
+            <div className="collapse-content flex flex-col">
+              <textarea
+                type="text"
+                placeholder="Internships"
+                rows={6}
+                value={formData.internships?.reason}
+                onChange={(e) =>
+                  handleChange("internships", "reason", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
+              />
+            </div>
+          </div>
+          <div className="collapse collapse-arrow join-item border border-base-300">
+            <input type="radio" name="my-accordion-4" defaultChecked />
+            <div className="collapse-title text-xl font-medium">
+              Projects
+            </div>
+            <div className="collapse-content flex flex-col">
+              <textarea
+                type="text"
+                placeholder="Projects"
+                rows={6}
+                value={formData.projects?.reason}
+                onChange={(e) =>
+                  handleChange("projects", "reason", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
+              />
+            </div>
+          </div>
+
+          <div className="collapse collapse-arrow join-item border border-base-300">
+            <input type="radio" name="my-accordion-4" defaultChecked />
+            <div className="collapse-title text-xl font-medium">
               Achievements
             </div>
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
-                placeholder="one"
+                placeholder="Achievements"
                 rows={6}
                 value={formData.achievements?.one}
                 onChange={(e) =>
@@ -241,15 +262,32 @@ const Page = () => {
                 }
                 className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
-              
-            </div> 
-           
+            </div>
+          </div>
+          <div className="collapse collapse-arrow join-item border border-base-300">
+            <input type="radio" name="my-accordion-4" defaultChecked />
+            <div className="collapse-title text-xl font-medium">
+             Interests
+            </div>
+            <div className="collapse-content flex flex-col">
+              <textarea
+                type="text"
+                placeholder="Interests"
+                rows={6}
+                value={formData.interests?.reason}
+                onChange={(e) =>
+                  handleChange("interests", "reason", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
+              />
+            </div>
           </div>
           {/* Similar structure for other sections */}
+
         </div>
 
         <button type="submit" className="btn btn-primary mt-4">
-           {status}
+          {status}
         </button>
       </form>
     </div>

@@ -268,20 +268,64 @@ formStatus.personal.mobile &&
               <hr className="pt-1" />
               <div>
                 <h1 className="font-bold text-[1.5rem]">Education</h1>
-
-                <p className="">{formStatus.education?.collegeName}</p>
-                <p className="">{formStatus.education?.intername}</p>
-                <p className="">{formStatus.education?.schoolname}</p>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.education?.reason?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
               </div>
               <div>
                 <h1 className="font-bold text-[1.5rem]">Skills</h1>
-                <h1 className="">{formStatus.skills?.skills}</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.skills?.skills?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
+              </div>
+              <div>
+                <h1 className="font-bold text-[1.5rem]">Internships</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.internships?.reason?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
+              </div>
+              <div>
+                <h1 className="font-bold text-[1.5rem]">Projects</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.projects?.reason?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
               </div>
               <div>
                 <h1 className="font-bold text-[1.5rem]">Achievements</h1>
                 <h1
                   dangerouslySetInnerHTML={{
                     __html: formStatus.achievements?.one?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
+              </div>
+              <div>
+                <h1 className="font-bold text-[1.5rem]">Interests</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.interests?.reason?.replace(
                       /\n/g,
                       "<br />"
                     ),

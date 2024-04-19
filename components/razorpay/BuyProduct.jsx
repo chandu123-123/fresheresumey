@@ -91,7 +91,7 @@ const BuyProduct = () => {
     paymentObject.open();
 
     paymentObject.on("payment.failed", function (response) {
-      alert("Payment failed. Please try again. Contact support for help");
+      alert("Payment failed. Please try again");
     });
   };
 
