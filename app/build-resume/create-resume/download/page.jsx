@@ -266,6 +266,7 @@ formStatus.personal.mobile &&
                 </div>
               </div>
               <hr className="pt-1" />
+              {    formStatus.education.reason &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Education</h1>
                 <h1
@@ -277,6 +278,8 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
+              {    formStatus.skills.skills &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Skills</h1>
                 <h1
@@ -288,6 +291,20 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}            {    formStatus.languages.reason &&
+              <div>
+                <h1 className="font-bold text-[1.5rem]">Languages</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.skills?.skills?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
+              </div>
+              }
+              {    formStatus.internships.reason &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Internships</h1>
                 <h1
@@ -299,6 +316,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}   {    formStatus.projects.reason &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Projects</h1>
                 <h1
@@ -310,6 +328,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}   {    formStatus.achievements.one &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Achievements</h1>
                 <h1
@@ -321,6 +340,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}{    formStatus.interests.reason&&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Interests</h1>
                 <h1
@@ -332,6 +352,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
               <div className="mt-4">
                 <br />
               </div>

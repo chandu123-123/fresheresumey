@@ -19,8 +19,7 @@ const Pricing = () => {
           Transactions
         </li>
         <li className="flex items-center gap-2">
-          <FaCheckCircle fill="green" size={20}></FaCheckCircle> More Templates
-          Soon
+          <FaCheckCircle fill="green" size={20}></FaCheckCircle> All Templates free with 1 payment
         </li>
       </ul>
       <div className="pt-4 text-center flex justify-center">
