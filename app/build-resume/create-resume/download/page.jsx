@@ -266,6 +266,8 @@ formStatus.personal.mobile &&
                 </div>
               </div>
               <hr className="pt-1" />
+              { 
+                      formStatus.education && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Education</h1>
                 <h1
@@ -277,7 +279,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
-             
+}
+{ 
+                      formStatus.skills && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Skills</h1>
                 <h1
@@ -289,7 +293,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
-        
+}
+{ 
+                      formStatus.languages && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Languages</h1>
                 <h1
@@ -301,6 +307,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
+{ 
+                      formStatus.internships && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Internships</h1>
                 <h1
@@ -312,6 +321,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
+{ 
+                      formStatus.projects && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Projects</h1>
                 <h1
@@ -323,6 +335,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
+{ 
+                      formStatus.achievements && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Achievements</h1>
                 <h1
@@ -334,6 +349,9 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
+{ 
+                      formStatus.interests && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Interests</h1>
                 <h1
@@ -345,6 +363,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
+}
               <div className="mt-4">
                 <br />
               </div>
