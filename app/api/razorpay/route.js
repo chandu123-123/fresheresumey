@@ -21,7 +21,7 @@ export async function GET() {
         notes: {
             // These notes will be added to your transaction. So you can search it within their dashboard.
             // Also, it's included in webhooks as well. So you can automate it.
-            paymentFor: "testingDemo",
+            paymentFor: "Fresheresume",
             userId: "100",
             productId: 'P100'
         }
