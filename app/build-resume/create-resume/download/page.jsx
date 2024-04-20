@@ -291,19 +291,23 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
-}            {    formStatus.languages.reason &&
+}          
+
+  {/* {    formStatus.languages.reason &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Languages</h1>
                 <h1
                   dangerouslySetInnerHTML={{
-                    __html: formStatus.skills?.skills?.replace(
+                    __html: formStatus.languages?.reason?.replace(
                       /\n/g,
                       "<br />"
                     ),
                   }}
                 ></h1>
               </div>
-              }
+              } */}
+
+
               {    formStatus.internships.reason &&
               <div>
                 <h1 className="font-bold text-[1.5rem]">Internships</h1>
