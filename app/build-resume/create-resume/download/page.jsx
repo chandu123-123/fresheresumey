@@ -270,7 +270,7 @@ formStatus.personal.mobile &&
                 <h1 className="font-bold text-[1.5rem]">Education</h1>
                 <h1
                   dangerouslySetInnerHTML={{
-                    __html: formStatus.education?.reason?.replace(
+                    __html: formStatus.education?.reason?.replace(/ /g, "&nbsp;")?.replace(
                       /\n/g,
                       "<br />"
                     ),

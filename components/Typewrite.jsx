@@ -7,9 +7,9 @@ const Typewrite = () => {
       <TypeAnimation
         sequence={[
           // Same substring at the start will only be typed out once, initially
-          "Struggling to create a Resume for",
+          "Struggling to create a Resume for Companies as a ",
           1000, // wait 1s before replacing "Mice" with "Hamsters"
-          "Struggling to create a Resume for Companies",
+          "Struggling to create a Resume for Companies as a Fresher",
           // 1000,
           // 'We produce food for Guinea Pigs',
           // 1000,

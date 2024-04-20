@@ -11,7 +11,7 @@ const page = () => {
         </div>
         <div className="card-body flex justify-center flex-col items-center">
           <h2 className="card-title">
-            <span className="font-bold text-[2rem] p-3">Rs:9</span>/ life time
+            <span className="font-bold text-[2rem] p-3">Rs:25</span>/ life time
           </h2>
          
           <Pricing></Pricing>
