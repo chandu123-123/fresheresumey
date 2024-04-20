@@ -33,6 +33,9 @@ const Page = () => {
     skills: {
       skills: "",
     },
+    languages:{
+      reason:"",
+    },
     achievements: {
       one: "",
       two: "",
@@ -187,6 +190,31 @@ const Page = () => {
                 value={formData.skills?.skills}
                 onChange={(e) =>
                   handleChange("skills", "skills", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
+              />
+            </div>
+          </div>
+          <div className="collapse collapse-arrow join-item border border-base-300">
+            <input type="radio" name="my-accordion-4" defaultChecked />
+            <div className="collapse-title text-xl font-medium">Languages</div>
+            <div className="collapse-content flex flex-col">
+              {/* <input
+                type="text"
+                placeholder="skills"
+                value={formData.skills?.skills}
+                onChange={(e) =>
+                  handleChange("skills", "skills", e.target.value)
+                }
+                className="bg-white border-2 p-1"
+              /> */}
+              <textarea
+                type="text"
+                placeholder="languages"
+                rows={6}
+                value={formData.languages?.reason}
+                onChange={(e) =>
+                  handleChange("languages", "reason", e.target.value)
                 }
                 className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
