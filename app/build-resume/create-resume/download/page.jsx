@@ -277,7 +277,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
-              {    formStatus.skills.skills &&
+             
               <div>
                 <h1 className="font-bold text-[1.5rem]">Skills</h1>
                 <h1
@@ -289,7 +289,7 @@ formStatus.personal.mobile &&
                   }}
                 ></h1>
               </div>
-}            
+        
               <div>
                 <h1 className="font-bold text-[1.5rem]">Languages</h1>
                 <h1
