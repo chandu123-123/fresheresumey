@@ -16,13 +16,14 @@ export async function POST(req, res) {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "chandancheripallyssr@gmail.com",
-      pass: "foxp hnvh fahu gija",
+      user: "contactfresheresume@gmail.com",
+      pass: "eakw karg uxqc wskp",
     },
   });
-
+ // eakw karg uxqc wskp
+ //foxp hnvh fahu gija
   const mailOptions = {
-    from: "chandancheripallyssr@gmail.com",
+    from: "contactfresheresume@gmail.com",
     to:email,
     subject:"otp verification",
     text: (Math.floor(Math.random() * 900000) + 100000).toString(),
