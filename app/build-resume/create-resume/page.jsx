@@ -58,7 +58,7 @@ const Page = () => {
   useEffect(() => {
     
       setFormData(formstatus);
-      console.log(formstatus)
+     // console.log(formstatus)
     
   }, [formstatus]);
   const handleSubmit = (e) => {
