@@ -44,23 +44,7 @@ const Page = () => {
       reason:""
     },
   });
-  const handleAddAchievement = () => {
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      achievements: [...prevFormData.achievements, { name: "", link: "" }],
-    }));
-  };
 
-  const handleAchievementChange = (index, field, value) => {
-    const updatedAchievements = formData.achievements.map((achievement, i) =>
-      i === index ? { ...achievement, [field]: value } : achievement
-    );
-
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      achievements: updatedAchievements,
-    }));
-  };
 
   const handleChange = (section, fieldName, value) => {
     setFormData((prevFormData) => ({
@@ -72,9 +56,10 @@ const Page = () => {
     }));
   };
   useEffect(() => {
-    if (userpaid) {
+    
       setFormData(formstatus);
-    }
+      console.log(formstatus)
+    
   }, [formstatus]);
   const handleSubmit = (e) => {
     e.preventDefault();

@@ -229,20 +229,20 @@ const MyComponent = forwardRef((props, ref) => {
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
               <div className="pb-2 flex flex-col gap-2">
-                {  formStatus.personal.name &&
+                {  formStatus.personal?.name &&
                 <h1 className="font-bold text-[1.7rem] uppercase">
                   {`   ${formStatus.personal?.name}`}
                 </h1>
 }
                 <div className="flex gap-2">{
 
-formStatus.personal.mobile &&
+formStatus.personal?.mobile &&
                   <a href={`tel:${formStatus.personal?.mobile}`}>
-                    {formStatus.personal.mobile}
+                    {formStatus.personal?.mobile}
                   </a>}
-                  {  formStatus.personal.email && <a href={`mailto:${formStatus.personal?.email}`}>{formStatus.personal?.email}</a>}
+                  {  formStatus.personal && <a href={`mailto:${formStatus.personal?.email}`}>{formStatus.personal?.email}</a>}
                  {
-                  formStatus.personal.linkedin  &&
+                  formStatus.personal?.linkedin  &&
                   <a
                     href={` ${
                       isValidLink(formStatus.personal?.linkedin)
@@ -253,7 +253,7 @@ formStatus.personal.mobile &&
                     Linkedin
                   </a>}
                   { 
-                      formStatus.personal.github  && 
+                      formStatus.personal?.github && 
                       <a
                     href={` ${
                       isValidLink(formStatus.personal?.github)
@@ -267,7 +267,7 @@ formStatus.personal.mobile &&
               </div>
               <hr className="pt-1" />
               { 
-                      formStatus.education && 
+                      formStatus.education &&formStatus.education.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Education</h1>
                 <h1
@@ -281,7 +281,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.skills && 
+               formStatus.skills&&       formStatus.skills?.skills!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Skills</h1>
                 <h1
@@ -295,7 +295,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.languages && 
+               formStatus.languages&&       formStatus.languages?.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Languages</h1>
                 <h1
@@ -309,7 +309,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.internships && 
+                 formStatus.internships&&      formStatus.internships?.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Internships</h1>
                 <h1
@@ -323,7 +323,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.projects && 
+               formStatus.projects&&       formStatus.projects?.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Projects</h1>
                 <h1
@@ -337,7 +337,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.achievements && 
+                   formStatus.achievements&&        formStatus.achievements?.one!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Achievements</h1>
                 <h1
@@ -351,7 +351,7 @@ formStatus.personal.mobile &&
               </div>
 }
 { 
-                      formStatus.interests && 
+                   formStatus.interests&&     formStatus.interests?.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Interests</h1>
                 <h1
