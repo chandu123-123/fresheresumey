@@ -50,8 +50,7 @@ const Page = () => {
          setstatus("Submit")
         
          if(data.msg==="success"){
-          console.log("success")
-      
+       
             seterr("")
             //console.log(useremail)
             dispatch(setemail(data.email));

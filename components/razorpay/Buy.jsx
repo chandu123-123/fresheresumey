@@ -10,9 +10,7 @@ const Buy = ({ makePayment }) => {
   const [message, setmessage] = useState("");
 const router=useRouter()
   const verifying = () => {
-    console.log(useremail);
-
-    console.log(load)
+  
     if (useremail.length == 0) {
       setload("")
       setmessage("Please login in");
@@ -32,7 +30,7 @@ const router=useRouter()
       } else {
         setmessage("");
         setload("")
-        console.log(load)
+   
         makePayment({ productId: "FresherResume" });
       }
     }

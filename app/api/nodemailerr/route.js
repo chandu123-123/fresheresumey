@@ -6,7 +6,7 @@ import generateOTP from "generate-otp";
 import { dbconnection } from "@/lib/database";
 
 export async function POST(req, res) {
-    console.log("hello")
+    
   // Check if the request method is POST
   const data = await req.json();
   await dbconnection()
@@ -34,7 +34,7 @@ export async function POST(req, res) {
 
     return NextResponse.json({ msg: "success", otp: mailOptions.text });
   } catch (error) {
-    console.log("fdsa")
+  
     return NextResponse.error("failed to send error", 500);
   }
 }
