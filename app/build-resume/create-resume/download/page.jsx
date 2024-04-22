@@ -240,7 +240,7 @@ formStatus.personal.mobile &&
                   <a href={`tel:${formStatus.personal?.mobile}`}>
                     {formStatus.personal.mobile}
                   </a>}
-                  {  formStatus.personal.email && <a href={`mailto:${formStatus.personal?.email}`}>email</a>}
+                  {  formStatus.personal.email && <a href={`mailto:${formStatus.personal?.email}`}>{formStatus.personal?.email}</a>}
                  {
                   formStatus.personal.linkedin  &&
                   <a
@@ -250,7 +250,7 @@ formStatus.personal.mobile &&
                         : "https://www.linkedin.com/"
                     }`}
                   >
-                    linkedin
+                    Linkedin
                   </a>}
                   { 
                       formStatus.personal.github  && 
@@ -261,7 +261,7 @@ formStatus.personal.mobile &&
                         : "https://github.com/"
                     }`}
                   >
-                    github
+                    Github
                   </a>}
                 </div>
               </div>
