@@ -39,7 +39,7 @@ const Keedbackuser = () => {
         <div>
          {/* <AiOutlineFeedback size={20}/> */}
         
-       <button className="btn opacity-50" onClick={()=>document.getElementById('my_modal').showModal()}>feedback</button>
+       <button className="btn opacity-50" onClick={()=>document.getElementById('my_modal').showModal()}>Feedback</button>
         </div>
 <dialog id="my_modal" className="modal">
   <div className="modal-box text-black bg-white text-center ">

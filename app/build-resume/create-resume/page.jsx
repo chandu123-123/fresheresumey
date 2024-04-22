@@ -127,7 +127,7 @@ const Page = () => {
                   />
                   <input
                     type="text"
-                    placeholder="github"
+                    placeholder="Github"
                     value={formData.personal?.github}
                     onChange={(e) =>
                       handleChange("personal", "github", e.target.value)
@@ -170,7 +170,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="skills"
+                placeholder="Skills"
                 rows={6}
                 value={formData.skills?.skills}
                 onChange={(e) =>
@@ -195,7 +195,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="languages"
+                placeholder="Languages"
                 rows={6}
                 value={formData.languages?.reason}
                 onChange={(e) =>

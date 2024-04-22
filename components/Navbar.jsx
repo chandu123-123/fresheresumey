@@ -31,7 +31,7 @@ const Navbar = () => {
           <li>
             <Link href="/pricing" className="">
               {" "}
-              pricing
+              Pricing
             </Link>
           </li>
           <li>
@@ -140,7 +140,7 @@ const Navbar = () => {
                     }
                     className=""
                   >
-                    pricing
+                    Pricing
                   </Link>
                 </li>
                 <li>

@@ -9,17 +9,17 @@ const Pricing = () => {
       <ul className="flex flex-col gap-2">
         <li className="flex items-center gap-2">
           <FaCheckCircle fill="green" size={20}></FaCheckCircle>
-          unlimited access
+          Unlimited Access
         </li>
         <li className="flex items-center gap-2">
           <FaCheckCircle fill="green" size={20}></FaCheckCircle>Job Ready Resume
         </li>
         <li className="flex items-center gap-2">
-          <FaCheckCircle fill="green" size={20}></FaCheckCircle>safe
+          <FaCheckCircle fill="green" size={20}></FaCheckCircle>Safe
           Transactions
         </li>
         <li className="flex items-center gap-2">
-          <FaCheckCircle fill="green" size={20}></FaCheckCircle> All Templates free with 1 payment
+          <FaCheckCircle fill="green" size={20}></FaCheckCircle> Unlock All Templates With Just One Payment!
         </li>
       </ul>
       <div className="pt-4 text-center flex justify-center">

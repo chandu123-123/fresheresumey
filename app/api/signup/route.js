@@ -12,7 +12,7 @@ export async function POST(req, res) {
   try{
   const user=await userlogin.find({email})
   if(user.length!=0){
-    throw new Error("Already Account Created")
+    throw new Error("Already Have an Account")
   }
   const pass=await bcrypt.hash(password,10);
 

@@ -12,7 +12,7 @@ export async function POST(req,res){
        try{
         
         if (!password) {
-            throw new Error("Enter details correctly");
+            throw new Error("Please Enter the details correctly");
         }
        const user=await userlogin.find({email})
     
@@ -23,16 +23,16 @@ export async function POST(req,res){
        return NextResponse.json({msg:"success",email,paid:user[0].paid})
        }
        else{
-        return NextResponse.json({msg:"Password is incorrect"})
+        return NextResponse.json({msg:"Incorrect Password"})
        }   
     
     }
        else{
-        return NextResponse.json({msg:"Account Not Created"})
+        return NextResponse.json({msg:"User doesn't exist"})
        }
        }
        catch(err){
-        return NextResponse.json({msg:`${err}`})
+        return NextResponse.json({msg:`${err.Error}`})
        }
        
 }
