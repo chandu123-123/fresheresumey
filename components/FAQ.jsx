@@ -21,7 +21,7 @@ const FAQ = () => {
     Is there is refund ?
   </div>
   <div className="collapse-content"> 
-    <p>There is no refund in this. You have unlimited access to make changes to make resume. Also you have access to future templates</p>
+    <p>There is no refund in this. You have unlimited access to make changes in resume. Also you have access to future templates</p>
   </div>
 </div>
 <div className="collapse collapse-arrow ">
@@ -30,7 +30,7 @@ const FAQ = () => {
   What types of templates do you offer, and can I customize them?
   </div>
   <div className="collapse-content"> 
-    <p>We offer a single professionally designed resume template tailored to various job roles for students. Yes, you can customize the template by adjusting content.</p>
+    <p>We offer a single professionally designed resume template tailored to various job roles for students, also we are working on some more templates for students, which they have free access for that . Yes, you can customize the template by adjusting content.</p>
   </div>
 </div>
 <div className="collapse collapse-arrow ">
