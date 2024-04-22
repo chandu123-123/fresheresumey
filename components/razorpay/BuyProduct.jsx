@@ -83,7 +83,6 @@ const BuyProduct = () => {
       prefill: {
         name: "FresherResume",
         email: useremail,
-        contact: "8501918777",
       },
     };
 
