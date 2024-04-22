@@ -12,7 +12,7 @@ export async function POST(req,res){
        try{
         
         if (!password) {
-            throw new Error("Please Enter the details correctly");
+            return NextResponse.json({msg:"Please Enter the Details Correctly"})
         }
        const user=await userlogin.find({email})
     
@@ -32,7 +32,7 @@ export async function POST(req,res){
        }
        }
        catch(err){
-        return NextResponse.json({msg:`${err.Error}`})
+        return NextResponse.json({msg:`${err}`})
        }
        
 }
