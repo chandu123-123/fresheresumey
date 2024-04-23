@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import generateOTP from "generate-otp";
 import { dbconnection } from "@/lib/database";
-
+import crypto from "crypto";
 export async function POST(req, res) {
     
   // Check if the request method is POST
@@ -22,17 +22,18 @@ export async function POST(req, res) {
   });
  // eakw karg uxqc wskp
  //foxp hnvh fahu gija
+ const otp=(Math.floor(Math.random() * 900000) + 100000).toString()
   const mailOptions = {
     from: "contactfresheresume@gmail.com",
     to:email,
     subject:"otp verification",
-    text: (Math.floor(Math.random() * 900000) + 100000).toString(),
+    text: otp,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-
-    return NextResponse.json({ msg: "success", otp: mailOptions.text });
+    const hashedOtp =await  crypto.createHash("sha256").update(otp).digest("hex");
+    return NextResponse.json({ msg: "success", otp: hashedOtp });
   } catch (error) {
   
     return NextResponse.error("failed to send error", 500);

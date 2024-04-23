@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-
+import crypto from "crypto";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
 
@@ -74,8 +74,10 @@ setotpgenerated(nodotp.otp)
       // Handle signup failure
     }
   };
-  const handleOtpChange = (e) => {
-    setotpcheck(e.target.value);
+  const handleOtpChange =async (e) => {
+ 
+    const hashedotp =await  crypto.createHash("sha256").update(e.target.value).digest("hex");
+    setotpcheck(hashedotp);
   };
 const verify=async (e)=>{
   e.preventDefault()
