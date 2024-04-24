@@ -5,8 +5,10 @@ import React, { useState } from "react";
 import crypto from "crypto";
 import Button from "@/components/Button";
 import Loader from "@/components/Loader";
+import { dbconnection } from "@/lib/database";
 
 const Page = () => {
+  
   const router=useRouter()
   const [err,seterr]=useState("")
  const [otp,setotp]=useState(false);
@@ -59,7 +61,10 @@ const Page = () => {
       })
 const nodotp=await nodeotp.json();
 
-setotpgenerated(nodotp.otp)
+
+  
+
+setotpgenerated(nodotp.secret)
 //console.log(nodotp)
 //console.log(nodotp)
           //router.push("/sign-in")
@@ -75,8 +80,9 @@ setotpgenerated(nodotp.otp)
     }
   };
   const handleOtpChange =async (e) => {
- 
-    const hashedotp =await  crypto.createHash("sha256").update(e.target.value).digest("hex");
+   
+    const hashedotp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(e.target.value).digest("hex");
+    
     setotpcheck(hashedotp);
   };
 const verify=async (e)=>{

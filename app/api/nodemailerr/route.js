@@ -27,13 +27,13 @@ export async function POST(req, res) {
     from: "contactfresheresume@gmail.com",
     to:email,
     subject:"otp verification",
-    text: otp,
+    text:`Your otp is ${otp}`,
   };
 
   try {
     await transporter.sendMail(mailOptions);
-    const hashedOtp =await  crypto.createHash("sha256").update(otp).digest("hex");
-    return NextResponse.json({ msg: "success", otp: hashedOtp });
+    const hashedOtp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(otp).digest("hex");
+    return NextResponse.json({ msg: "success", secret: hashedOtp });
   } catch (error) {
   
     return NextResponse.error("failed to send error", 500);
