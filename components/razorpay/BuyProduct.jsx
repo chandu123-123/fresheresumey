@@ -35,7 +35,10 @@ const BuyProduct = () => {
       handler: async function (response) {
         // if (response.length==0) return <Loading/>;
       //  console.log(response);
-
+        if(response.razorpay_payment_id !== null && response.razorpay_payment_id !== ""){
+          console.log(response.razorpay_payment_id)
+          dispatch(setPaid())
+        }
         const data = await  fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/paymentverify`, {
           method: "POST",
           // headers: {

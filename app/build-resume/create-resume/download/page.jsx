@@ -371,7 +371,7 @@ formStatus.personal?.mobile &&
             {paying && (
               <div className="toast toast-top toast-center">
                 <div className="alert alert-info">
-                  <span>You were not paid</span>
+                  <span>Payment is required for downloading</span>
                 </div>
               </div>
             )}

@@ -117,7 +117,7 @@ if(otpcheck===otpgenerated){
 }
 }
 else{
-  seterr("incorrect otp")
+  seterr("Incorrect OTP")
 }
 }
   return (
