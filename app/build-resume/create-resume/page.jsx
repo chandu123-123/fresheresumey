@@ -164,7 +164,7 @@ const Page = () => {
             <div className="collapse-content flex flex-col">
             <textarea
                 type="text"
-                placeholder="Education"
+                placeholder="college - cgpa, intermediate - percentage , school - percent"
                 rows={6}
                 value={formData.education?.reason}
                 onChange={(e) =>
@@ -190,7 +190,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="Skills"
+                placeholder="Html, Css, React, Mongodb, Editing etc"
                 rows={6}
                 value={formData.skills?.skills}
                 onChange={(e) =>
@@ -215,7 +215,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="Languages"
+                placeholder="Java, python etc"
                 rows={6}
                 value={formData.languages?.reason}
                 onChange={(e) =>
@@ -250,7 +250,7 @@ const Page = () => {
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
-                placeholder="Internships"
+                placeholder="Internship details"
                 rows={6}
                 value={formData.internships?.reason}
                 onChange={(e) =>
@@ -268,7 +268,7 @@ const Page = () => {
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
-                placeholder="Projects"
+                placeholder="Projects you have done"
                 rows={6}
                 value={formData.projects?.reason}
                 onChange={(e) =>
@@ -287,7 +287,7 @@ const Page = () => {
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
-                placeholder="Achievements"
+                placeholder="Any achievements till now"
                 rows={6}
                 value={formData.achievements?.one}
                 onChange={(e) =>
@@ -305,7 +305,7 @@ const Page = () => {
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
-                placeholder="Interests"
+                placeholder="what are your interests"
                 rows={6}
                 value={formData.interests?.reason}
                 onChange={(e) =>
