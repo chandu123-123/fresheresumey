@@ -267,6 +267,20 @@ formStatus.personal?.mobile &&
               </div>
               <hr className="pt-1" />
               { 
+                      formStatus.objective &&formStatus.objective.reason!=="" && 
+              <div>
+                <h1 className="font-bold text-[1.5rem]">Objective</h1>
+                <h1
+                  dangerouslySetInnerHTML={{
+                    __html: formStatus.objective?.reason?.replace(/ /g, "&nbsp;")?.replace(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                ></h1>
+              </div>
+}
+              { 
                       formStatus.education &&formStatus.education.reason!=="" && 
               <div>
                 <h1 className="font-bold text-[1.5rem]">Education</h1>

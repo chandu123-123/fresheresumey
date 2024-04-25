@@ -30,6 +30,9 @@ const Page = () => {
     education: {
   reason:"",
     },
+    objective:{
+      reason:"",
+    },
     skills: {
       skills: "",
     },
@@ -136,6 +139,23 @@ const Page = () => {
                   />
                 </div>
               </div>
+            </div>
+          </div>
+          <div className="collapse collapse-arrow join-item border border-base-300">
+            <input type="radio" name="my-accordion-4" defaultChecked />
+            <div className="collapse-title text-xl font-medium">Objective</div>
+            <div className="collapse-content flex flex-col">
+            <textarea
+                type="text"
+                placeholder="Enter if you are applying for a specific role in a Company. Else leave it"
+                rows={6}
+                value={formData.objective?.reason}
+                onChange={(e) =>
+                  handleChange("objective", "reason", e.target.value)
+                }
+                className="bg-white border-2 p-1 whitespace-pre-wrap"
+              />
+            
             </div>
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
