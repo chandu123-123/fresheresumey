@@ -44,6 +44,9 @@ const update=async (e)=>{
         },2000)
         
     }
+    else{
+      seterr(data.msg||"something wrong")
+    }
 }
   const handleChange = (e) => {
     const { name, value } = e.target;
