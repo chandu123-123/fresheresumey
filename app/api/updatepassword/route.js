@@ -6,10 +6,10 @@ import { NextResponse } from "next/server";
 export async function POST(req,res){
     const data=await req.json()
       await dbconnection()
-      console.log(data)
+      //console.log(data)
       const pass=data.newpassword
       const email=data.email
-      console.log(email)
+    //  console.log(email)
        try{
        
         if (pass=="") {
@@ -22,7 +22,9 @@ export async function POST(req,res){
         console.log("success")
         // Additional logic here
         return NextResponse.json({msg:"success"})
-      } 
+      } else{
+        return NextResponse.json({msg:"something is wrong try again"})
+      }
     
     }
       
