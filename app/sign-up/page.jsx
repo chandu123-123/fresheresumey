@@ -158,6 +158,7 @@ else{
         {
           err&&<h1 className="mt-6 text-red-600">{err}</h1>
         }
+       
         <div className="flex justify-between items-center pt-4">
           <h1>Already created Account ? </h1>
           {/* <button className="btn btn-success" onClick={()=>{route.push("/sign-up")}}>Sign-Up</button> */}

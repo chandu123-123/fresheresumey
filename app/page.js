@@ -26,7 +26,7 @@ const page = () => {
         <h1 className="text-[2rem] p-2 font-light font-poppins" >No more Confusion</h1>
       </div>
       <div className="flex flex-col items-center justify-center p-10">
-        <h1 className="m-10 text-[2rem] uppercase font-poppins">Sample Resume </h1>
+        <h1 className="m-10 text-[2rem] uppercase font-poppins">Sample Generated</h1>
         <Image src={resumereal} width={400} height={400} alt="sample resume"></Image>
       </div>
       <FAQ></FAQ>

@@ -102,6 +102,9 @@ const Page = () => {
         {
           err&&<h1 className="mt-6 text-red-600">{err}</h1>
         }
+         <div className="mt-6">
+          <Link href="/sign-in/forgot" className="mt-6">Forgot your Password ?</Link>
+        </div>
         <div className="flex justify-between items-center pt-4">
           <h1>Account Not There ? </h1>
           {/* <button className="btn btn-success" onClick={()=>{route.push("/sign-up")}}>Sign-Up</button> */}
