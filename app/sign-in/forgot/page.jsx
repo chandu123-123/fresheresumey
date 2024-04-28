@@ -25,7 +25,8 @@ const handlenewpass=(e)=>{
     setnewpassword(e.target.value)
     
 }
-const update=async ()=>{
+const update=async (e)=>{
+    e.preventDefault()
   //  console.log(newpassword)
     const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/updatepassword`,{
         method:"POST",
@@ -42,6 +43,9 @@ const update=async ()=>{
             router.push("/sign-in")
         },2000)
         
+    }
+    else{
+      seterr(data.msg||"something wrong")
     }
 }
   const handleChange = (e) => {
@@ -118,8 +122,8 @@ setload(true)
 const verify=async (e)=>{
     e.preventDefault()
   //console.log(otpcheck)
-  console.log(otpcheck)
-  console.log(otpgenerated)
+ // console.log(otpcheck)
+  //console.log(otpgenerated)
   if(otpcheck==otpgenerated){
 
    
@@ -156,7 +160,7 @@ const verify=async (e)=>{
              <div className=" justify-evenly">
               
              <input type="text " value={otpcheck.value} className=" bg-white border-2" placeholder="Enter Otp"  name="otp" onChange={handleOtpChange} />
-             <button className="btn btn-success mt-2"  onClick={verify}>Verify</button>
+             <button className="btn btn-success mt-2" type="button"  onClick={verify}>Verify</button>
              </div>
             
            </div>
@@ -167,7 +171,9 @@ const verify=async (e)=>{
           <div className="flex justify-evenly mt-6">
               
           <input type="text " value={newpassword} className=" bg-white border-2" placeholder="New Password"  name="otp" onChange={handlenewpass} />
-          <button className="btn btn-success mt-2"  onClick={update}>Update</button>
+          <div>
+          <button type="button" className="btn btn-success mt-2"  onClick={update}>Update</button>
+          </div>
           </div>
         }
         {

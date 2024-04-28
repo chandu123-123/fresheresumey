@@ -344,7 +344,7 @@ const MyComponent = forwardRef((props, ref) => {
                   ></h1>
                 </div>
               )}
-              {formStatus.internships &&
+              {/* {formStatus.internships &&
                 formStatus.internships?.reason !== "" && (
                   <div>
                     <h1 className="font-bold text-[1.5rem]">Internships</h1>
@@ -357,7 +357,7 @@ const MyComponent = forwardRef((props, ref) => {
                       }}
                     ></h1>
                   </div>
-                )}
+                )} */}
               {formStatus.projects && formStatus.projects?.reason !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem]">Projects</h1>

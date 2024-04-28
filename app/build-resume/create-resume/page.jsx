@@ -146,31 +146,28 @@ const Page = () => {
                   className="bg-white border-2 p-1"
                 />
               </div>
-              {formData.personal.image ?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
-              <div className="py-5">
-               <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
-                <div className="flex gap-5">
-                <input type="file" onChange={handleimage} />
-                <h1>(Allowed less than 2MB)</h1>
-                </div>
+              {
+              // formData.personal.image ?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
+              // <div className="py-5">
+              //  <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
+              //   <div className="flex gap-5">
+              //   <input type="file" onChange={handleimage} />
+              //   <h1>(Allowed less than 2MB)</h1>
+              //   </div>
 
-                {!imgUrl && (
-                  <div className="outerbar">
-                    <div
-                      className="innerbar"
-                      style={{ width: `${progresspercent}%` }}
-                    >
-                      {progresspercent}%
-                    </div>
-                  </div>
-                )}
+              //   {!imgUrl && (
+              //     <div className="outerbar">
+              //       <div
+              //         className="innerbar"
+              //         style={{ width: `${progresspercent}%` }}
+              //       >
+              //         {progresspercent}%
+              //       </div>
+              //     </div>
+              //   )}
               
-                {/* {
-        imgUrl &&
-        <Image src={imgUrl} width={100} height={100}></Image>
-       // <img src={imgUrl} alt='uploaded file' height={50} />
-      } */}
-              </div>
+              
+              // </div>
 }
               <div>
                 <label htmlFor="">Links</label>
