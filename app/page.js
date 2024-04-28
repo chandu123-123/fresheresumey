@@ -17,8 +17,8 @@ const page = () => {
       </div>
       <div className="flex flex-col justify-center items-center mb-5">
         <div className="mt-20">
-          <span className="text-[2rem] sm:text-[3rem] font-poppins font-bold italic">FRESHE</span>
-          <span className="text-[4rem] sm:text-[5rem]  font-poppins font-bold italic">RESUME</span>
+          <span className="text-[1.5rem] sm:text-[3rem] font-poppins font-bold italic">FRESHE</span>
+          <span className="text-[3.5rem] sm:text-[5rem]  font-poppins font-bold italic">RESUME</span>
         </div>
        <Homecreate></Homecreate>
       
