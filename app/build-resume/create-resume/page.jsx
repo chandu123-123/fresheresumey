@@ -16,7 +16,6 @@ const Page = () => {
   const userpaid = useSelector((state) => state.counter.paid);
   const formstatus = useSelector((state) => state.counter.form);
   const [status, setstatus] = useState("Submit");
- 
   const [imgUrl, setImgUrl] = useState(null);
   const [progresspercent, setProgresspercent] = useState(0);
   const [formData, setFormData] = useState({
@@ -108,17 +107,16 @@ const Page = () => {
         );
         setProgresspercent(progress);
       },
-      async (error) => {
-        await setcheck("123")
+      (error) => {
         alert("Your file restricting the conditions");
       },
       () => {
         try{ 
-        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
-          await handleChange("personal", "image", downloadURL);
+        getDownloadURL(uploadTask.snapshot.ref).then( (downloadURL) => {
+           handleChange("personal", "image", downloadURL);
         });}
         catch(err){
-          console.log(err)
+         
         }
       }
     );}
