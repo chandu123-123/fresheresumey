@@ -279,7 +279,7 @@ const MyComponent = forwardRef((props, ref) => {
                   
                 </div>
                 <div className="ml-auto ">
-                {/* {formStatus.personal?.image && (
+                {formStatus.personal?.image && (
                     // <h1 className="font-bold text-[1.7rem] uppercase">
                     //   {`   ${formStatus.personal?.name}`}
                     // </h1>
@@ -290,7 +290,7 @@ const MyComponent = forwardRef((props, ref) => {
                       className="flex mr-4 rounded-full"
                       alt="your photo"
                     ></Image>
-                  )} */}
+                  )}
                   </div>
               </div>
               <hr className="pt-1" />

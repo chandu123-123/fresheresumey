@@ -54,7 +54,7 @@ const Page = () => {
       reason: "",
     },
   });
-
+  
   const handleChange = (section, fieldName, value) => {
     
     setFormData((prevFormData) => ({
@@ -65,15 +65,15 @@ const Page = () => {
       },
     }));
   };
-  useEffect(() => {
-    handleChange("personal", "image", imgUrl);
-   
-    setFormData(formstatus);
-  }, [imgUrl]);
+  // useEffect(() => {
+  //   handleChange("personal", "image", imgUrl);
+  
+  //   setFormData(formstatus);
+  // }, [imgUrl]);
 
   useEffect(() => {
     setFormData(formstatus);
-    
+   
   }, [formstatus]);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -147,27 +147,27 @@ const Page = () => {
                 />
               </div>
               {
-              // formData.personal.image ?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
-              // <div className="py-5">
-              //  <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
-              //   <div className="flex gap-5">
-              //   <input type="file" onChange={handleimage} />
-              //   <h1>(Allowed less than 2MB)</h1>
-              //   </div>
+              (formData.personal?.image || imgUrl)?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
+              <div className="py-5">
+               <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
+                <div className="flex gap-5">
+                <input type="file" onChange={handleimage} />
+                <h1>(Allowed less than 2MB)</h1>
+                </div>
 
-              //   {!imgUrl && (
-              //     <div className="outerbar">
-              //       <div
-              //         className="innerbar"
-              //         style={{ width: `${progresspercent}%` }}
-              //       >
-              //         {progresspercent}%
-              //       </div>
-              //     </div>
-              //   )}
+                {!imgUrl && (
+                  <div className="outerbar">
+                    <div
+                      className="innerbar"
+                      style={{ width: `${progresspercent}%` }}
+                    >
+                      {progresspercent}%
+                    </div>
+                  </div>
+                )}
               
               
-              // </div>
+              </div>
 }
               <div>
                 <label htmlFor="">Links</label>
