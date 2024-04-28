@@ -37,7 +37,7 @@ const FAQ = () => {
         <div className="collapse collapse-arrow bg-white ">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">
-            It will work in Iphone's 
+            It will work in Iphone
           </div>
           <div className="collapse-content">
             <p>
