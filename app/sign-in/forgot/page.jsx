@@ -156,7 +156,7 @@ const verify=async (e)=>{
              <div className=" justify-evenly">
               
              <input type="text " value={otpcheck.value} className=" bg-white border-2" placeholder="Enter Otp"  name="otp" onChange={handleOtpChange} />
-             <button className="btn btn-success mt-2"  onClick={verify}>Verify</button>
+             <button className="btn btn-success mt-2" type="button"  onClick={verify}>Verify</button>
              </div>
             
            </div>
@@ -167,7 +167,7 @@ const verify=async (e)=>{
           <div className="flex justify-evenly mt-6">
               
           <input type="text " value={newpassword} className=" bg-white border-2" placeholder="New Password"  name="otp" onChange={handlenewpass} />
-          <button className="btn btn-success mt-2"  onClick={update}>Update</button>
+          <button className="btn btn-success mt-2" type="button"  onClick={update}>Update</button>
           </div>
         }
         {
