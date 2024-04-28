@@ -227,6 +227,7 @@ const MyComponent = forwardRef((props, ref) => {
       <button onClick={handlecheck} className="btn btn-outline btn-accent ml-6">
         Print
       </button>
+      
       <div className="p-6">
         {confirm && (
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
