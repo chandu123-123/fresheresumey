@@ -4,18 +4,25 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { increment, decrement, setForm } from "@/store/createslice";
 
+import { storage } from "@/lib/firebase";
+import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
+
 import { useDispatch, useSelector } from "react-redux";
 import { set } from "mongoose";
+import Image from "next/image";
 const Page = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const userpaid = useSelector((state) => state.counter.paid);
   const formstatus = useSelector((state) => state.counter.form);
   const [status, setstatus] = useState("Submit");
-
+ 
+  const [imgUrl, setImgUrl] = useState(null);
+  const [progresspercent, setProgresspercent] = useState(0);
   const [formData, setFormData] = useState({
     personal: {
       name: "",
+      image: "",
       email: "",
       mobile: "",
       github: "",
@@ -28,28 +35,28 @@ const Page = () => {
       reason: "",
     },
     education: {
-  reason:"",
+      reason: "",
     },
-    objective:{
-      reason:"",
+    objective: {
+      reason: "",
     },
     skills: {
       skills: "",
     },
-    languages:{
-      reason:"",
+    languages: {
+      reason: "",
     },
     achievements: {
       one: "",
       two: "",
     },
-    interests:{
-      reason:""
+    interests: {
+      reason: "",
     },
   });
 
-
   const handleChange = (section, fieldName, value) => {
+    
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
@@ -59,9 +66,13 @@ const Page = () => {
     }));
   };
   useEffect(() => {
-    
-      setFormData(formstatus);
-     // console.log(formstatus)
+    handleChange("personal", "image", imgUrl);
+   
+    setFormData(formstatus);
+  }, [imgUrl]);
+
+  useEffect(() => {
+    setFormData(formstatus);
     
   }, [formstatus]);
   const handleSubmit = (e) => {
@@ -78,6 +89,43 @@ const Page = () => {
     // query: { formData: JSON.stringify(formData) },
   };
 
+  const handleimage = (e) => {
+    e.preventDefault();
+    setImgUrl(null);
+   
+    const file = e.target?.files[0];
+    
+    if (!file) return;
+
+    const storageRef = ref(storage, `files/${file.name}`);
+    const uploadTask = uploadBytesResumable(storageRef, file);
+ try{
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const progress = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        );
+        setProgresspercent(progress);
+      },
+      async (error) => {
+        await setcheck("123")
+        alert("Your file restricting the conditions");
+      },
+      () => {
+        try{ 
+        getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+          await handleChange("personal", "image", downloadURL);
+        });}
+        catch(err){
+          console.log(err)
+        }
+      }
+    );}
+    catch(err){
+      console.log(err)
+    }
+  };
   return (
     <div className="p-2 ">
       <form onSubmit={handleSubmit}>
@@ -98,6 +146,32 @@ const Page = () => {
                   className="bg-white border-2 p-1"
                 />
               </div>
+              {formData.personal.image ?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
+              <div className="py-5">
+               <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
+                <div className="flex gap-5">
+                <input type="file" onChange={handleimage} />
+                <h1>(Allowed less than 2MB)</h1>
+                </div>
+
+                {!imgUrl && (
+                  <div className="outerbar">
+                    <div
+                      className="innerbar"
+                      style={{ width: `${progresspercent}%` }}
+                    >
+                      {progresspercent}%
+                    </div>
+                  </div>
+                )}
+              
+                {/* {
+        imgUrl &&
+        <Image src={imgUrl} width={100} height={100}></Image>
+       // <img src={imgUrl} alt='uploaded file' height={50} />
+      } */}
+              </div>
+}
               <div>
                 <label htmlFor="">Links</label>
                 <div>
@@ -145,7 +219,7 @@ const Page = () => {
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">Objective</div>
             <div className="collapse-content flex flex-col">
-            <textarea
+              <textarea
                 type="text"
                 placeholder="Enter if you are applying for a specific role in a Company. Else leave it"
                 rows={6}
@@ -155,14 +229,13 @@ const Page = () => {
                 }
                 className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
-            
             </div>
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">Education</div>
             <div className="collapse-content flex flex-col">
-            <textarea
+              <textarea
                 type="text"
                 placeholder="college - cgpa, intermediate - percentage , school - percent"
                 rows={6}
@@ -172,7 +245,6 @@ const Page = () => {
                 }
                 className="bg-white border-2 p-1 whitespace-pre-wrap"
               />
-            
             </div>
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
@@ -190,7 +262,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="Html, Css, React, Mongodb, Editing etc"
+                placeholder="Example : Html, Css, React, Mongodb, Editing etc"
                 rows={6}
                 value={formData.skills?.skills}
                 onChange={(e) =>
@@ -215,7 +287,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="Java, python etc"
+                placeholder="Example : Java, python etc"
                 rows={6}
                 value={formData.languages?.reason}
                 onChange={(e) =>
@@ -245,7 +317,7 @@ const Page = () => {
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
             <div className="collapse-title text-xl font-medium">
-             Internships
+              Internships
             </div>
             <div className="collapse-content flex flex-col">
               <textarea
@@ -262,9 +334,7 @@ const Page = () => {
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
-            <div className="collapse-title text-xl font-medium">
-              Projects
-            </div>
+            <div className="collapse-title text-xl font-medium">Projects</div>
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
@@ -299,9 +369,7 @@ const Page = () => {
           </div>
           <div className="collapse collapse-arrow join-item border border-base-300">
             <input type="radio" name="my-accordion-4" defaultChecked />
-            <div className="collapse-title text-xl font-medium">
-             Interests
-            </div>
+            <div className="collapse-title text-xl font-medium">Interests</div>
             <div className="collapse-content flex flex-col">
               <textarea
                 type="text"
@@ -316,7 +384,6 @@ const Page = () => {
             </div>
           </div>
           {/* Similar structure for other sections */}
-
         </div>
 
         <button type="submit" className="btn btn-primary mt-4">

@@ -160,7 +160,7 @@ const verify=async (e)=>{
              <div className=" justify-evenly">
               
              <input type="text " value={otpcheck.value} className=" bg-white border-2" placeholder="Enter Otp"  name="otp" onChange={handleOtpChange} />
-             <button className="btn btn-success mt-2"  onClick={verify}>Verify</button>
+             <button className="btn btn-success mt-2" type="button"  onClick={verify}>Verify</button>
              </div>
             
            </div>
