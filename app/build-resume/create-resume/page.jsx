@@ -150,9 +150,12 @@ const Page = () => {
               (formData.personal?.image || imgUrl)?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
               <div className="py-5">
                <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
-                <div className="flex gap-5">
-                <input type="file" onChange={handleimage} />
+                <div className="flex flex-col gap-5">
                 <h1>(Allowed less than 2MB)</h1>
+                <div>
+                <input type="file" onChange={handleimage} />
+                <h1>(Select square shape)</h1>
+                </div>
                 </div>
 
                 {!imgUrl && (

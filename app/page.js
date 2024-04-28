@@ -17,8 +17,8 @@ const page = () => {
       </div>
       <div className="flex flex-col justify-center items-center mb-5">
         <div className="mt-20">
-          <span className="text-[1.5rem] sm:text-[3rem] font-poppins font-bold italic">FRESHE</span>
-          <span className="text-[3.5rem] sm:text-[5rem]  font-poppins font-bold italic">RESUME</span>
+          <span className="text-[1.5rem] sm:text-[3rem] font-poppins font-semibold italic">FRESHE</span>
+          <span className="text-[3.5rem] sm:text-[5rem]  font-poppins font-semibold italic">RESUME</span>
         </div>
        <Homecreate></Homecreate>
       
@@ -29,8 +29,8 @@ const page = () => {
         <h1 className="text-[2rem] p-2 font-light font-poppins font-normal italic" >Create in Few Minutes</h1>
       </div>
       <div className="flex flex-col mt-5 items-center md:mt-20 md:flex-row md:gap-10 text-center md:text-center md:justify-center">
-        <h1 className="text-[4rem] flex font-poppins font-bold italic">ATS</h1>
-        <h1 className="text-[4rem] flex font-poppins font-bold italic">FRIENDLY</h1>
+        <h1 className="text-[4rem] flex font-poppins font-semibold italic">ATS</h1>
+        <h1 className="text-[4rem] flex font-poppins font-semibold italic">FRIENDLY</h1>
         {/* //<Image src={animate} width={60} height={60} ></Image> */}
       </div>
       <div className="flex flex-col items-center justify-center p-10">
