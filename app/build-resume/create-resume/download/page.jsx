@@ -154,6 +154,7 @@ import React, { useEffect, useRef, useState, forwardRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const MyComponent = forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -223,161 +224,179 @@ const MyComponent = forwardRef((props, ref) => {
 
   return (
     <div>
-     <button onClick={handlecheck} className="btn btn-outline btn-accent ml-6">Print</button>
+      <button onClick={handlecheck} className="btn btn-outline btn-accent ml-6">
+        Print
+      </button>
       <div className="p-6">
         {confirm && (
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
-              <div className="pb-2 flex flex-col gap-2">
-                {  formStatus.personal?.name &&
-                <h1 className="font-bold text-[1.7rem] uppercase">
-                  {`   ${formStatus.personal?.name}`}
-                </h1>
-}
-                <div className="flex gap-2">{
-
-formStatus.personal?.mobile &&
-                  <a href={`tel:${formStatus.personal?.mobile}`}>
-                    {formStatus.personal?.mobile}
-                  </a>}
-                  {  formStatus.personal && <a href={`mailto:${formStatus.personal?.email}`}>{formStatus.personal?.email}</a>}
-                 {
-                  formStatus.personal?.linkedin  &&
-                  <a
-                    href={` ${
-                      isValidLink(formStatus.personal?.linkedin)
-                        ? formStatus.personal.linkedin
-                        : "https://www.linkedin.com/"
-                    }`}
-                  >
-                    Linkedin
-                  </a>}
-                  { 
-                      formStatus.personal?.github && 
+              <div className="flex ">
+                <div className="pb-2 flex flex-col gap-2 mr-2">
+                  <div>
+                    {formStatus.personal?.name && (
+                      <h1 className="font-bold text-[1.7rem] uppercase">
+                        {`   ${formStatus.personal?.name}`}
+                      </h1>
+                    )}
+                  </div>
+                  <div className="flex gap-2">
+                    {formStatus.personal?.mobile && (
+                      <a href={`tel:${formStatus.personal?.mobile}`}>
+                        {formStatus.personal?.mobile}
+                      </a>
+                    )}
+                    {formStatus.personal && (
+                      <a href={`mailto:${formStatus.personal?.email}`}>
+                        {formStatus.personal?.email}
+                      </a>
+                    )}
+                    {formStatus.personal?.linkedin && (
                       <a
-                    href={` ${
-                      isValidLink(formStatus.personal?.github)
-                        ? formStatus.personal.github
-                        : "https://github.com/"
-                    }`}
-                  >
-                    Github
-                  </a>}
+                        href={` ${
+                          isValidLink(formStatus.personal?.linkedin)
+                            ? formStatus.personal.linkedin
+                            : "https://www.linkedin.com/"
+                        }`}
+                      >
+                        Linkedin
+                      </a>
+                    )}
+                    {formStatus.personal?.github && (
+                      <a
+                        href={` ${
+                          isValidLink(formStatus.personal?.github)
+                            ? formStatus.personal.github
+                            : "https://github.com/"
+                        }`}
+                      >
+                        Github
+                      </a>
+                    )}
+                  </div>
+
+                  
                 </div>
+                <div className="ml-auto ">
+                {formStatus.personal?.image && (
+                    // <h1 className="font-bold text-[1.7rem] uppercase">
+                    //   {`   ${formStatus.personal?.name}`}
+                    // </h1>
+                    <Image
+                      src={formStatus.personal?.image}
+                      width={70}
+                      height={70}
+                      className="flex mr-4 rounded-full"
+                      alt="your photo"
+                    ></Image>
+                  )}
+                  </div>
               </div>
               <hr className="pt-1" />
-              { 
-                      formStatus.objective &&formStatus.objective.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Objective</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.objective?.reason?.replace(/ /g, "&nbsp;")?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-              { 
-                      formStatus.education &&formStatus.education.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Education</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.education?.reason?.replace(/ /g, "&nbsp;")?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-               formStatus.skills&&       formStatus.skills?.skills!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Skills</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.skills?.skills?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-               formStatus.languages&&       formStatus.languages?.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Languages</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.languages?.reason?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-                 formStatus.internships&&      formStatus.internships?.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Internships</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.internships?.reason?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-               formStatus.projects&&       formStatus.projects?.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Projects</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.projects?.reason?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-                   formStatus.achievements&&        formStatus.achievements?.one!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Achievements</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.achievements?.one?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
-{ 
-                   formStatus.interests&&     formStatus.interests?.reason!=="" && 
-              <div>
-                <h1 className="font-bold text-[1.5rem]">Interests</h1>
-                <h1
-                  dangerouslySetInnerHTML={{
-                    __html: formStatus.interests?.reason?.replace(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                ></h1>
-              </div>
-}
+              {formStatus.objective && formStatus.objective.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Objective</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.objective?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.education && formStatus.education.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Education</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.education?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.skills && formStatus.skills?.skills !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Skills</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.skills?.skills?.replace(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.languages && formStatus.languages?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Languages</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.languages?.reason?.replace(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.internships &&
+                formStatus.internships?.reason !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem]">Internships</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.internships?.reason?.replace(
+                          /\n/g,
+                          "<br />"
+                        ),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+              {formStatus.projects && formStatus.projects?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Projects</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.projects?.reason?.replace(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.achievements &&
+                formStatus.achievements?.one !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem]">Achievements</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.achievements?.one?.replace(
+                          /\n/g,
+                          "<br />"
+                        ),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+              {formStatus.interests && formStatus.interests?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem]">Interests</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.interests?.reason?.replace(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  ></h1>
+                </div>
+              )}
               <div className="mt-4">
                 <br />
               </div>
