@@ -285,7 +285,7 @@ const Page = () => {
               /> */}
               <textarea
                 type="text"
-                placeholder="Example : Java, python etc"
+                placeholder="Languages"
                 rows={6}
                 value={formData.languages?.reason}
                 onChange={(e) =>
