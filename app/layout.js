@@ -6,7 +6,7 @@ import Script from 'next/script'
 import Keedbackuser from "@/components/Feedback";
 import Footer from "@/components/Footer";
 import { Poppins } from 'next/font/google';
-
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   subsets: ['latin'],
@@ -23,6 +23,8 @@ export default function RootLayout({ children }) {
   return (
     <>
     <html lang="en">
+    <GoogleAnalytics />
+
       <body className={(inter.className,poppins.variable)}>
         <StoreProvider>
         <Navbar></Navbar>
