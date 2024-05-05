@@ -323,7 +323,7 @@ const MyComponent = forwardRef((props, ref) => {
                   <h1 className="font-bold text-[1.5rem]">Skills</h1>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: formStatus.skills?.reason
+                      __html: formStatus.skills?.skills
                         ?.replace(/ /g, "&nbsp;")
                         ?.replace(/\n/g, "<br />")
                         ?.replace(
