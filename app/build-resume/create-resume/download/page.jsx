@@ -232,7 +232,7 @@ const MyComponent = forwardRef((props, ref) => {
         {confirm && (
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
-              <div className="flex ">
+              <div className="flex p-4">
                 <div className="pb-2 flex flex-col gap-2 mr-2">
                   <div>
                     {formStatus.personal?.name && (
@@ -320,21 +320,23 @@ const MyComponent = forwardRef((props, ref) => {
                 <div>
                   <h1 className="font-bold text-[1.5rem]">Skills</h1>
                   <h1
-  dangerouslySetInnerHTML={{
-    __html: formStatus.skills?.skills
-      ?.split(/(\s+)/)
-      .map((part) => {
-        if (/^https?:\/\/\S+$/.test(part)) {
-          return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-        } else if (/\s+/.test(part)) {
-          return part.replace(/ /g, "&nbsp;").replace(/\n/g, "<br />");
-        } else {
-          return part;
-        }
-      })
-      .join("")
-  }}
-/>
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.skills?.skills
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
                 </div>
               )}
               {formStatus.languages && formStatus.languages?.reason !== "" && (
