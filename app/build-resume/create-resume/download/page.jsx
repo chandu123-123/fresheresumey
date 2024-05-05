@@ -323,10 +323,13 @@ const MyComponent = forwardRef((props, ref) => {
                   <h1 className="font-bold text-[1.5rem]">Skills</h1>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: formStatus.skills?.skills?.replace(
-                        /\n/g,
-                        "<br />"
-                      ),
+                      __html: formStatus.skills?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
+                          /(https?:\/\/\S+)/g,
+                          '<a href="$1" target="_blank" class="underline">Link</a>'
+                        ),
                     }}
                   ></h1>
                 </div>
@@ -336,19 +339,34 @@ const MyComponent = forwardRef((props, ref) => {
                   <h1 className="font-bold text-[1.5rem]">Languages</h1>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: formStatus.languages?.reason?.replace(
-                        /\n/g,
-                        "<br />"
-                      ),
+                      __html: formStatus.languages?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
+                          /(https?:\/\/\S+)/g,
+                          '<a href="$1" target="_blank" class="underline">Link</a>'
+                        ),
                     }}
                   ></h1>
+                 
                 </div>
               )}
               {formStatus.internships &&
                 formStatus.internships?.reason !== "" && (
                   <div>
                     <h1 className="font-bold text-[1.5rem]">Internships</h1>
-                    <h1
+                     <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.internships?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
+                          /(https?:\/\/\S+)/g,
+                          '<a href="$1" target="_blank" class="underline">Link</a>'
+                        ),
+                    }}
+                  ></h1>
+                    {/* <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason?.replace(
                           /\n/g,
@@ -358,21 +376,21 @@ const MyComponent = forwardRef((props, ref) => {
                           '<a href="$1" target="_blank" class="underline">Link</a>'
                         ),
                       }}
-                    ></h1>
+                    ></h1> */}
                   </div>
                 )}
               {formStatus.projects && formStatus.projects?.reason !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem]">Projects</h1>
                   <h1
-                     dangerouslySetInnerHTML={{
-                      __html: formStatus.projects?.reason?.replace(
-                        /\n/g,
-                        "<br />"
-                      ).replace(
-                        /(https?:\/\/\S+)/g,
-                        '<a href="$1" target="_blank" class="underline">Link</a>'
-                      ),
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.projects?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
+                          /(https?:\/\/\S+)/g,
+                          '<a href="$1" target="_blank" class="underline">Link</a>'
+                        ),
                     }}
                   ></h1>
                 </div>
@@ -382,16 +400,16 @@ const MyComponent = forwardRef((props, ref) => {
                   <div>
                     <h1 className="font-bold text-[1.5rem]">Achievements</h1>
                     <h1
-                      dangerouslySetInnerHTML={{
-                        __html: formStatus.achievements?.one?.replace(
-                          /\n/g,
-                          "<br />"
-                        ).replace(
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.achievements?.one
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
                           /(https?:\/\/\S+)/g,
                           '<a href="$1" target="_blank" class="underline">Link</a>'
                         ),
-                      }}
-                    ></h1>
+                    }}
+                  ></h1>
                   </div>
                 )}
               {formStatus.interests && formStatus.interests?.reason !== "" && (
@@ -399,10 +417,13 @@ const MyComponent = forwardRef((props, ref) => {
                   <h1 className="font-bold text-[1.5rem]">Interests</h1>
                   <h1
                     dangerouslySetInnerHTML={{
-                      __html: formStatus.interests?.reason?.replace(
-                        /\n/g,
-                        "<br />"
-                      ),
+                      __html: formStatus.interests?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />")
+                        ?.replace(
+                          /(https?:\/\/\S+)/g,
+                          '<a href="$1" target="_blank" class="underline">Link</a>'
+                        ),
                     }}
                   ></h1>
                 </div>
