@@ -37,9 +37,7 @@ const page = () => {
         <h1 className="m-10 text-[2rem] uppercase font-poppins italic font-normal text-center">Sample Generated</h1>
         <Image src={resumereal} width={400} height={400} className="drop-shadow-2xl" alt="sample resume"></Image>
       </div>
-      <div className="font-poppins flex items-center justify-center text-center p-4 leading-loose">
-        <h1>Adjust spaces and lines , to get Output Correctly . Use chatgpt to write the content , without any Grammer mistakes</h1>
-      </div>
+    
       <h1 className="text-[4rem] flex font-poppins font-semibold italic text-center items-center justify-center uppercase">Easy to generate</h1>
       <FAQ></FAQ>
     </div>
