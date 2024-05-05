@@ -8,7 +8,7 @@ import React from "react";
 const page = () => {
   const image="/images/resume.jpg"
   const animate="/buildresume/animate.gif"
-  const resumereal="/images/resumereal.png"
+  const resumereal="/images/sharan.jpg"
   return (
     <div className="flex flex-col justify-center">
       <div className="mt-10 flex justify-center font-light text-[20px]">
@@ -34,8 +34,11 @@ const page = () => {
         {/* //<Image src={animate} width={60} height={60} ></Image> */}
       </div>
       <div className="flex flex-col items-center justify-center p-10">
-        <h1 className="m-10 text-[2rem] uppercase font-poppins italic font-normal">Sample Generated</h1>
-        <Image src={resumereal} width={400} height={400} alt="sample resume"></Image>
+        <h1 className="m-10 text-[2rem] uppercase font-poppins italic font-normal text-center">Sample Generated</h1>
+        <Image src={resumereal} width={400} height={400} className="drop-shadow-2xl" alt="sample resume"></Image>
+      </div>
+      <div className="font-poppins flex items-center justify-center text-center p-4 leading-loose">
+        <h1>Adjust spaces and lines , to get Output Correctly . Use chatgpt to write the content , without any Grammer mistakes</h1>
       </div>
       <h1 className="text-[4rem] flex font-poppins font-semibold italic text-center items-center justify-center uppercase">Easy to generate</h1>
       <FAQ></FAQ>

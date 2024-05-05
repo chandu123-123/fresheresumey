@@ -232,11 +232,11 @@ const MyComponent = forwardRef((props, ref) => {
         {confirm && (
           <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
-              <div className="flex p-4">
-                <div className="pb-2 flex flex-col gap-2 mr-2">
+              <div className="flex pb-5">
+                <div className="pt-2 flex flex-col gap-2 mr-2 ">
                   <div>
                     {formStatus.personal?.name && (
-                      <h1 className="font-bold text-[1.7rem] uppercase">
+                      <h1 className="font-bold text-[1.9rem] uppercase">
                         {`   ${formStatus.personal?.name}`}
                       </h1>
                     )}
@@ -283,8 +283,8 @@ const MyComponent = forwardRef((props, ref) => {
                     // </h1>
                     <Image
                       src={formStatus.personal?.image}
-                      width={70}
-                      height={70}
+                      width={85}
+                      height={85}
                       className="flex mr-4 rounded-full"
                       alt="your photo"
                     ></Image>
