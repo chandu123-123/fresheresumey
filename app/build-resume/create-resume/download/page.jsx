@@ -225,7 +225,7 @@ const MyComponent = forwardRef((props, ref) => {
   return (
     <div>
       <button onClick={handlecheck} className="btn btn-outline btn-accent ml-6">
-        Print
+        Download
       </button>
 
       <div className="p-6">
@@ -292,83 +292,37 @@ const MyComponent = forwardRef((props, ref) => {
                 </div>
               </div>
               <hr className="pt-1" />
-              {formStatus.objective && formStatus.objective.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Objective</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.objective?.reason
-                        ?.replace(/ /g, "&nbsp;")
-                        ?.replace(/\n/g, "<br />"),
-                    }}
-                  ></h1>
-                </div>
-              )}
-              {formStatus.education && formStatus.education.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Education</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.education?.reason
-                        ?.replace(/ /g, "&nbsp;")
-                        ?.replace(/\n/g, "<br />"),
-                    }}
-                  ></h1>
-                </div>
-              )}
-              {formStatus.skills && formStatus.skills?.skills !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Skills</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.skills?.skills
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
-              {formStatus.languages && formStatus.languages?.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Languages</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.languages?.reason
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
-              {formStatus.internships &&
-                formStatus.internships?.reason !== "" && (
+              
+                {formStatus.objective && formStatus.objective.reason !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem]">Internships</h1>
+                    <h1 className="font-bold text-[1.5rem] p-3">Objective</h1>
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.internships?.reason
+                        __html: formStatus.objective?.reason
+                          ?.replace(/ /g, "&nbsp;")
+                          ?.replace(/\n/g, "<br />"),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+                {formStatus.education && formStatus.education.reason !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.education?.reason
+                          ?.replace(/ /g, "&nbsp;")
+                          ?.replace(/\n/g, "<br />"),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+                {formStatus.skills && formStatus.skills?.skills !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.skills?.skills
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -384,7 +338,55 @@ const MyComponent = forwardRef((props, ref) => {
                           .join(""),
                       }}
                     />
-                    {/* <h1
+                  </div>
+                )}
+                {formStatus.languages &&
+                  formStatus.languages?.reason !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.languages?.reason
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                    </div>
+                  )}
+                {formStatus.internships &&
+                  formStatus.internships?.reason !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Internships</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.internships?.reason
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                      {/* <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason?.replace(
                           /\n/g,
@@ -395,38 +397,14 @@ const MyComponent = forwardRef((props, ref) => {
                         ),
                       }}
                     ></h1> */}
-                  </div>
-                )}
-              {formStatus.projects && formStatus.projects?.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Projects</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.projects?.reason
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
-              {formStatus.achievements &&
-                formStatus.achievements?.one !== "" && (
+                    </div>
+                  )}
+                {formStatus.projects && formStatus.projects?.reason !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem]">Achievements</h1>
+                    <h1 className="font-bold text-[1.5rem] py-2">Projects</h1>
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.achievements?.one
+                        __html: formStatus.projects?.reason
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -444,29 +422,55 @@ const MyComponent = forwardRef((props, ref) => {
                     />
                   </div>
                 )}
-              {formStatus.interests && formStatus.interests?.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem]">Interests</h1>
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.interests?.reason
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
+                {formStatus.achievements &&
+                  formStatus.achievements?.one !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Achievements</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.achievements?.one
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                    </div>
+                  )}
+                {formStatus.interests &&
+                  formStatus.interests?.reason !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Interests</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.interests?.reason
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                    </div>
+                  )}
+             
               <div className="mt-4">
                 <br />
               </div>
