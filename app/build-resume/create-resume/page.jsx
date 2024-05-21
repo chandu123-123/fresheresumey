@@ -84,7 +84,7 @@ const Page = () => {
     // Add logic to handle form submission
 
     setstatus("Submit");
-    router.push(`/build-resume/create-resume/download`);
+    router.push(`/build-resume/create-resume/templates`);
     // query: { formData: JSON.stringify(formData) },
   };
 
