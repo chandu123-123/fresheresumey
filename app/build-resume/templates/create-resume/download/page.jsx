@@ -295,7 +295,7 @@ const MyComponent = forwardRef((props, ref) => {
               
                 {formStatus.objective && formStatus.objective.reason !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem] p-3">Objective</h1>
+                    <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
                     <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.objective?.reason

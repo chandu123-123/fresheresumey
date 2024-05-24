@@ -53,9 +53,8 @@ const Page = () => {
       reason: "",
     },
   });
-  
+
   const handleChange = (section, fieldName, value) => {
-    
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
@@ -64,66 +63,57 @@ const Page = () => {
       },
     }));
   };
-  // useEffect(() => {
-  //   handleChange("personal", "image", imgUrl);
-  
-  //   setFormData(formstatus);
-  // }, [imgUrl]);
 
   useEffect(() => {
-    setFormData(formstatus);
-   
+    if (formstatus) {
+      setFormData(formstatus);
+    }
   }, [formstatus]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setstatus("loading");
-    // Access formData object containing all sections
-
     dispatch(setForm(formData));
-    setFormData(formstatus);
-    // Add logic to handle form submission
-
     setstatus("Submit");
     router.push(`/build-resume/templates/create-resume/download`);
-    // query: { formData: JSON.stringify(formData) },
   };
 
   const handleimage = (e) => {
     e.preventDefault();
     setImgUrl(null);
-   
     const file = e.target?.files[0];
-    
     if (!file) return;
 
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
- try{
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgresspercent(progress);
-      },
-      (error) => {
-        alert("Your file restricting the conditions");
-      },
-      () => {
-        try{ 
-        getDownloadURL(uploadTask.snapshot.ref).then( (downloadURL) => {
-           handleChange("personal", "image", downloadURL);
-        });}
-        catch(err){
-         
+
+    try {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgresspercent(progress);
+        },
+        (error) => {
+          alert("Your file is restricting the conditions");
+        },
+        () => {
+          try {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              handleChange("personal", "image", downloadURL);
+            });
+          } catch (err) {
+            console.log(err);
+          }
         }
-      }
-    );}
-    catch(err){
-      console.log(err)
+      );
+    } catch (err) {
+      console.log(err);
     }
   };
+
   return (
     <div className="p-2 ">
       <form onSubmit={handleSubmit}>
