@@ -1,0 +1,44 @@
+.print{
+    background-color: rgb(25, 25, 100) !important;
+    color: white;
+    padding: 20;
+}
+.blackline {
+    width: 1px;
+    background-color: black;
+    color:red;
+    height: 100%;
+  }
+  
+  @media print {
+    .blackline {
+      width: 1px;
+      background-color: black;
+      height: 100%;
+    }
+  }
+  .line2 {
+    transform-origin: 0 100%;
+    border-left:100px solid #000;
+    margin-right: 30px;
+    margin-left: -20px;
+    height: 85rem;
+    position: absolute;
+    z-index: -1;
+   
+  }
+  .line {
+    transform-origin: 0 100%;
+    border-left:1px solid #000;
+    margin-right: 30px;
+    margin-left: -20px;
+    height: 85rem;
+   
+  }
+  /* .line {
+    transform-origin: 0 100%;
+    height: 1px;
+    border: 0;
+    background-color: black;
+  } */
+  
