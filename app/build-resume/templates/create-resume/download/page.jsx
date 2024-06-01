@@ -274,6 +274,28 @@ const MyComponent = forwardRef((props, ref) => {
                         Github
                       </a>
                     )}
+                      {formStatus.personal?.instagram && (
+                      <a
+                        href={` ${
+                          isValidLink(formStatus.personal?.instagram)
+                            ? formStatus.personal.instagram
+                            : "https://instagram.com/"
+                        }`}
+                      >
+                      Instagram
+                      </a>
+                    )}
+                      {formStatus.personal?.youtube && (
+                      <a
+                        href={` ${
+                          isValidLink(formStatus.personal?.youtube)
+                            ? formStatus.personal.youtube
+                            : "https://youtube.com/"
+                        }`}
+                      >
+                        Youtube
+                      </a>
+                    )}
                   </div>
                 </div>
                 <div className="ml-auto ">

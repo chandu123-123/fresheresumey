@@ -196,7 +196,7 @@ const MyComponent = forwardRef((props, ref) => {
   };
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
-    pageStyle: `@page { margin: 0mm; } `,
+    pageStyle: `@page {size: A4; margin: 0mm; }  @media print { body { -webkit-print-color-adjust: exact; }}`,
     // onBeforeGetContent: () => {
     //   if (useremail === "") {
     //     setLogin(true);
@@ -231,13 +231,13 @@ const MyComponent = forwardRef((props, ref) => {
 
       <div className="p-6" >
         {confirm && (
-          <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
+          <div className="pt-5 pl-2 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
               <div className="flex ">
-                
-                <div  className='p-5 ' style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}}> 
+              {/* style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}} */}
+                <div  className='  w-auto' > 
                   
-                  <div className="ml-auto py-3 mr-auto">
+                  <div className="mr-8 mt-8 flex justify-center h-28">
                     {formStatus.personal?.image && (
                       // <h1 className="font-bold text-[1.7rem] uppercase">
                       //   {`   ${formStatus.personal?.name}`}
@@ -253,7 +253,7 @@ const MyComponent = forwardRef((props, ref) => {
                   </div>
 
                   <div className="flex pb-5">
-                    <div className="pt-2 flex flex-col gap-2 mr-2 ">
+                    <div className="pt-5 flex flex-col gap-2 mr-2">
                       <div className="flex flex-col gap-2">
                         {formStatus.personal?.mobile && (
                           <a href={`tel:${formStatus.personal?.mobile}`}>
@@ -287,11 +287,33 @@ const MyComponent = forwardRef((props, ref) => {
                             Github
                           </a>
                         )}
+                         {formStatus.personal?.instagram && (
+                      <a
+                        href={` ${
+                          isValidLink(formStatus.personal?.instagram)
+                            ? formStatus.personal.instagram
+                            : "https://instagram.com/"
+                        }`}
+                      >
+                      Instagram
+                      </a>
+                    )}
+                      {formStatus.personal?.youtube && (
+                      <a
+                        href={` ${
+                          isValidLink(formStatus.personal?.youtube)
+                            ? formStatus.personal.youtube
+                            : "https://youtube.com/"
+                        }`}
+                      >
+                        Youtube
+                      </a>
+                    )}
                       </div>
                       {formStatus.skills &&
                         formStatus.skills?.skills !== "" && (
                           <div>
-                            <h1 className="font-bold text-[1.5rem] py-2">
+                            <h1 className="font-bold text-[1.5rem] pb-2">
                               Skills
                             </h1>
                             <h1
@@ -370,7 +392,7 @@ const MyComponent = forwardRef((props, ref) => {
                   </div>
                 </div>
 
-               {/* <div className={styles.line} ></div> */}
+               <div className={styles.line} ></div>
 
 
                 <div className="flex-2 pl-4">
@@ -381,12 +403,14 @@ const MyComponent = forwardRef((props, ref) => {
                       </h1>
                     )}
                   </div>
+                  {/* <hr /> */}
                   {formStatus.objective &&
                     formStatus.objective.reason !== "" && (
                       <div>
                         <h1 className="font-bold text-[1.5rem] py-2 ">
                           Objective
                         </h1>
+                        <hr className="pb-2"/>
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.objective?.reason
@@ -403,6 +427,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Education
                         </h1>
+                        <hr className="pb-2"/>
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.education?.reason
@@ -418,6 +443,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Projects
                         </h1>
+                        <hr className="pb-2"/>
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.projects?.reason
@@ -444,6 +470,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Internships
                         </h1>
+                        <hr className="pb-2"/>
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.internships?.reason
@@ -481,6 +508,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Achievements
                         </h1>
+                        <hr className="pb-2"/>
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.achievements?.one

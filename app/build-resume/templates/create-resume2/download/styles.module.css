@@ -30,9 +30,10 @@
   .line {
     transform-origin: 0 100%;
     border-left:1px solid #000;
-    margin-right: 30px;
-    margin-left: -20px;
-    height: 85rem;
+    margin-right: 10px;
+    margin-left: 5px;
+    margin-top: 10rem;
+    height: 130rem;
    
   }
   /* .line {

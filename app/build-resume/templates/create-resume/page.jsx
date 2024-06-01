@@ -26,6 +26,8 @@ const Page = () => {
       mobile: "",
       github: "",
       linkedin: "",
+      instagram:"",
+      youtube:"",
     },
     internships: {
       reason: "",
@@ -196,6 +198,24 @@ const Page = () => {
                     value={formData.personal?.github}
                     onChange={(e) =>
                       handleChange("personal", "github", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                     <input
+                    type="text"
+                    placeholder="Instagram"
+                    value={formData.personal?.instagram}
+                    onChange={(e) =>
+                      handleChange("personal", "instagram", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                    <input
+                    type="text"
+                    placeholder="Youtube"
+                    value={formData.personal?.youtube}
+                    onChange={(e) =>
+                      handleChange("personal", "youtube", e.target.value)
                     }
                     className="bg-white border-2 p-1"
                   />

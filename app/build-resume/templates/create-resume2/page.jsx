@@ -26,6 +26,8 @@ const Page = () => {
       mobile: "",
       github: "",
       linkedin: "",
+      instagram:"",
+      youtube:"",
     },
     internships: {
       reason: "",
@@ -84,7 +86,7 @@ const Page = () => {
     // Add logic to handle form submission
 
     setstatus("Submit");
-    router.push(`/build-resume/templates/create-resume2/template2`);
+    router.push(`/build-resume/templates/create-resume2/download`);
     // query: { formData: JSON.stringify(formData) },
   };
 
@@ -206,6 +208,24 @@ const Page = () => {
                     value={formData.personal?.github}
                     onChange={(e) =>
                       handleChange("personal", "github", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                    <input
+                    type="text"
+                    placeholder="Instagram"
+                    value={formData.personal?.instagram}
+                    onChange={(e) =>
+                      handleChange("personal", "instagram", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                    <input
+                    type="text"
+                    placeholder="Youtube"
+                    value={formData.personal?.youtube}
+                    onChange={(e) =>
+                      handleChange("personal", "youtube", e.target.value)
                     }
                     className="bg-white border-2 p-1"
                   />
