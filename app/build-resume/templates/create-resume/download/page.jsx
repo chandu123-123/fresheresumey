@@ -367,96 +367,38 @@ const MyComponent = forwardRef((props, ref) => {
                   )}
                 </div>
               </div>
-              {/* // <hr className="pt-1" /> */}
-
-              {formStatus.objective && formStatus.objective.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
-                  <hr className="pb-2" />
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.objective?.reason
-                        ?.replace(/ /g, "&nbsp;")
-                        ?.replace(/\n/g, "<br />"),
-                    }}
-                  ></h1>
-                </div>
-              )}
-              {formStatus.education && formStatus.education.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
-                  <hr className="pb-2" />
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.education?.reason
-                        ?.replace(/ /g, "&nbsp;")
-                        ?.replace(/\n/g, "<br />"),
-                    }}
-                  ></h1>
-                </div>
-              )}
-              {formStatus.skills && formStatus.skills?.skills !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
-                  <hr className="pb-2" />
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.skills?.skills
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
-              {formStatus.languages && formStatus.languages?.reason !== "" && (
-                <div>
-                  <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
-                  <hr className="pb-2" />
-                  <h1
-                    dangerouslySetInnerHTML={{
-                      __html: formStatus.languages?.reason
-                        ?.split(/(\s+)/)
-                        .map((part) => {
-                          if (/^https?:\/\/\S+$/.test(part)) {
-                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                          } else if (/\s+/.test(part)) {
-                            return part
-                              .replace(/ /g, "&nbsp;")
-                              .replace(/\n/g, "<br />");
-                          } else {
-                            return part;
-                          }
-                        })
-                        .join(""),
-                    }}
-                  />
-                </div>
-              )}
-              {formStatus.internships &&
-                formStatus.internships?.reason !== "" && (
+              <hr className="pt-1" />
+              
+                {formStatus.objective && formStatus.objective.reason !== "" && (
                   <div>
-<<<<<<< HEAD:app/build-resume/create-resume/download/page.jsx
-                    <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
-=======
-                    <h1 className="font-bold text-[1.5rem] py-2">
-                      Internships
-                    </h1>
-                    <hr className="pb-2" />
->>>>>>> new_template:app/build-resume/templates/create-resume/download/page.jsx
+                    <h1 className="font-bold text-[1.5rem] p-3">Objective</h1>
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.internships?.reason
+                        __html: formStatus.objective?.reason
+                          ?.replace(/ /g, "&nbsp;")
+                          ?.replace(/\n/g, "<br />"),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+                {formStatus.education && formStatus.education.reason !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.education?.reason
+                          ?.replace(/ /g, "&nbsp;")
+                          ?.replace(/\n/g, "<br />"),
+                      }}
+                    ></h1>
+                  </div>
+                )}
+                {formStatus.skills && formStatus.skills?.skills !== "" && (
+                  <div>
+                    <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
+                    <h1
+                      dangerouslySetInnerHTML={{
+                        __html: formStatus.skills?.skills
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -472,7 +414,55 @@ const MyComponent = forwardRef((props, ref) => {
                           .join(""),
                       }}
                     />
-                    {/* <h1
+                  </div>
+                )}
+                {formStatus.languages &&
+                  formStatus.languages?.reason !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.languages?.reason
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                    </div>
+                  )}
+                {formStatus.internships &&
+                  formStatus.internships?.reason !== "" && (
+                    <div>
+                      <h1 className="font-bold text-[1.5rem] py-2">Internships</h1>
+                      <h1
+                        dangerouslySetInnerHTML={{
+                          __html: formStatus.internships?.reason
+                            ?.split(/(\s+)/)
+                            .map((part) => {
+                              if (/^https?:\/\/\S+$/.test(part)) {
+                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                              } else if (/\s+/.test(part)) {
+                                return part
+                                  .replace(/ /g, "&nbsp;")
+                                  .replace(/\n/g, "<br />");
+                              } else {
+                                return part;
+                              }
+                            })
+                            .join(""),
+                        }}
+                      />
+                      {/* <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason?.replace(
                           /\n/g,
