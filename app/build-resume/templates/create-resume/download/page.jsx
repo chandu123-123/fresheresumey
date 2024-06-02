@@ -241,60 +241,114 @@ const MyComponent = forwardRef((props, ref) => {
                       </h1>
                     )}
                   </div>
-                  <div className="flex gap-2">
+                  <div className="flex gap-3 flex-wrap">
                     {formStatus.personal?.mobile && (
+                        <div className="flex gap-1 items-center">
+                        <Image
+                          className="object-contain"
+                          src={"/social/telephone.png"}
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
                       <a href={`tel:${formStatus.personal?.mobile}`}>
                         {formStatus.personal?.mobile}
                       </a>
+                    </div>
                     )}
                     {formStatus.personal && (
-                      <a href={`mailto:${formStatus.personal?.email}`}>
-                        {formStatus.personal?.email}
-                      </a>
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          className="object-contain"
+                          src={"/social/mail.png"}
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
+                        <a href={`mailto:${formStatus.personal?.email}`}>
+                          {formStatus.personal?.email}
+                        </a>
+                      </div>
                     )}
                     {formStatus.personal?.linkedin && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.linkedin)
-                            ? formStatus.personal.linkedin
-                            : "https://www.linkedin.com/"
-                        }`}
-                      >
-                        Linkedin
-                      </a>
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          src={"/social/linkedin.png"}
+                          className="object-contain"
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
+                        <a
+                          href={` ${
+                            isValidLink(formStatus.personal?.linkedin)
+                              ? formStatus.personal.linkedin
+                              : "https://www.linkedin.com/"
+                          }`}
+                        >
+                          Linkedin
+                        </a>
+                      </div>
                     )}
                     {formStatus.personal?.github && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.github)
-                            ? formStatus.personal.github
-                            : "https://github.com/"
-                        }`}
-                      >
-                        Github
-                      </a>
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          className="object-contain"
+                          src={"/social/github.png"}
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
+                        <a
+                          href={` ${
+                            isValidLink(formStatus.personal?.github)
+                              ? formStatus.personal.github
+                              : "https://github.com/"
+                          }`}
+                        >
+                          Github
+                        </a>
+                      </div>
                     )}
-                      {formStatus.personal?.instagram && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.instagram)
-                            ? formStatus.personal.instagram
-                            : "https://instagram.com/"
-                        }`}
-                      >
-                      Instagram
-                      </a>
+                    {formStatus.personal?.instagram && (
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          className="object-contain"
+                          src={"/social/instagram.png"}
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
+                        <a
+                          href={` ${
+                            isValidLink(formStatus.personal?.instagram)
+                              ? formStatus.personal.instagram
+                              : "https://instagram.com/"
+                          }`}
+                        >
+                          Instagram
+                        </a>
+                      </div>
                     )}
-                      {formStatus.personal?.youtube && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.youtube)
-                            ? formStatus.personal.youtube
-                            : "https://youtube.com/"
-                        }`}
-                      >
-                        Youtube
-                      </a>
+                    {formStatus.personal?.youtube && (
+                      <div className="flex gap-1 items-center">
+                        <Image
+                          className="object-contain"
+                          src={"/social/youtube.png"}
+                          width={20}
+                          height={10}
+                          alt="mail"
+                        ></Image>
+                        <a
+                          href={` ${
+                            isValidLink(formStatus.personal?.youtube)
+                              ? formStatus.personal.youtube
+                              : "https://youtube.com/"
+                          }`}
+                        >
+                          Youtube
+                        </a>
+                      </div>
                     )}
                   </div>
                 </div>
@@ -313,38 +367,92 @@ const MyComponent = forwardRef((props, ref) => {
                   )}
                 </div>
               </div>
-              <hr className="pt-1" />
-              
-                {formStatus.objective && formStatus.objective.reason !== "" && (
+              {/* // <hr className="pt-1" /> */}
+
+              {formStatus.objective && formStatus.objective.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.objective?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.education && formStatus.education.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.education?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.skills && formStatus.skills?.skills !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.skills?.skills
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+              {formStatus.languages && formStatus.languages?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.languages?.reason
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+              {formStatus.internships &&
+                formStatus.internships?.reason !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
+                    <h1 className="font-bold text-[1.5rem] py-2">
+                      Internships
+                    </h1>
+                    <hr className="pb-2" />
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.objective?.reason
-                          ?.replace(/ /g, "&nbsp;")
-                          ?.replace(/\n/g, "<br />"),
-                      }}
-                    ></h1>
-                  </div>
-                )}
-                {formStatus.education && formStatus.education.reason !== "" && (
-                  <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
-                    <h1
-                      dangerouslySetInnerHTML={{
-                        __html: formStatus.education?.reason
-                          ?.replace(/ /g, "&nbsp;")
-                          ?.replace(/\n/g, "<br />"),
-                      }}
-                    ></h1>
-                  </div>
-                )}
-                {formStatus.skills && formStatus.skills?.skills !== "" && (
-                  <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
-                    <h1
-                      dangerouslySetInnerHTML={{
-                        __html: formStatus.skills?.skills
+                        __html: formStatus.internships?.reason
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -360,55 +468,7 @@ const MyComponent = forwardRef((props, ref) => {
                           .join(""),
                       }}
                     />
-                  </div>
-                )}
-                {formStatus.languages &&
-                  formStatus.languages?.reason !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.languages?.reason
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                    </div>
-                  )}
-                {formStatus.internships &&
-                  formStatus.internships?.reason !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Internships</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.internships?.reason
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                      {/* <h1
+                    {/* <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason?.replace(
                           /\n/g,
@@ -419,14 +479,42 @@ const MyComponent = forwardRef((props, ref) => {
                         ),
                       }}
                     ></h1> */}
-                    </div>
-                  )}
-                {formStatus.projects && formStatus.projects?.reason !== "" && (
+                  </div>
+                )}
+              {formStatus.projects && formStatus.projects?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Projects</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.projects?.reason
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+              {formStatus.achievements &&
+                formStatus.achievements?.one !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Projects</h1>
+                    <h1 className="font-bold text-[1.5rem] py-2">
+                      Achievements
+                    </h1>
+                    <hr className="pb-2" />
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.projects?.reason
+                        __html: formStatus.achievements?.one
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -444,55 +532,31 @@ const MyComponent = forwardRef((props, ref) => {
                     />
                   </div>
                 )}
-                {formStatus.achievements &&
-                  formStatus.achievements?.one !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Achievements</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.achievements?.one
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                    </div>
-                  )}
-                {formStatus.interests &&
-                  formStatus.interests?.reason !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Interests</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.interests?.reason
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                    </div>
-                  )}
-             
+              {formStatus.interests && formStatus.interests?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Interests</h1>
+                  <hr className="pb-2" />
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.interests?.reason
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+
               <div className="mt-4">
                 <br />
               </div>

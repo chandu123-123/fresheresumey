@@ -155,7 +155,7 @@ import { useReactToPrint } from "react-to-print";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import styles from './styles.module.css'
+import styles from "./styles.module.css";
 
 const MyComponent = forwardRef((props, ref) => {
   const dispatch = useDispatch();
@@ -196,7 +196,7 @@ const MyComponent = forwardRef((props, ref) => {
   };
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
-    pageStyle: `@page {size: A4; margin: 0mm; }  @media print { body { -webkit-print-color-adjust: exact; }}`,
+    pageStyle: `@page {size: A4; margin: 8mm; }  @media print { body { -webkit-print-color-adjust: exact; }}`,
     // onBeforeGetContent: () => {
     //   if (useremail === "") {
     //     setLogin(true);
@@ -229,14 +229,13 @@ const MyComponent = forwardRef((props, ref) => {
         Download
       </button>
 
-      <div className="p-6" >
+      <div className="p-6">
         {confirm && (
           <div className="pt-5 pl-2 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
               <div className="flex ">
-              {/* style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}} */}
-                <div  className='  w-auto' > 
-                  
+                {/* style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}} */}
+                <div className="  w-auto mr-3">
                   <div className="mr-8 mt-8 flex justify-center h-28">
                     {formStatus.personal?.image && (
                       // <h1 className="font-bold text-[1.7rem] uppercase">
@@ -254,61 +253,115 @@ const MyComponent = forwardRef((props, ref) => {
 
                   <div className="flex pb-5">
                     <div className="pt-5 flex flex-col gap-2 mr-2">
-                      <div className="flex flex-col gap-2">
+                      <div className="flex flex-col gap-2 mb-2">
                         {formStatus.personal?.mobile && (
-                          <a href={`tel:${formStatus.personal?.mobile}`}>
-                            {formStatus.personal?.mobile}
-                          </a>
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/telephone.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a href={`tel:${formStatus.personal?.mobile}`}>
+                              {formStatus.personal?.mobile}
+                            </a>
+                          </div>
                         )}
                         {formStatus.personal && (
-                          <a href={`mailto:${formStatus.personal?.email}`}>
-                            {formStatus.personal?.email}
-                          </a>
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/mail.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a href={`mailto:${formStatus.personal?.email}`}>
+                              {formStatus.personal?.email}
+                            </a>
+                          </div>
                         )}
                         {formStatus.personal?.linkedin && (
-                          <a
-                            href={` ${
-                              isValidLink(formStatus.personal?.linkedin)
-                                ? formStatus.personal.linkedin
-                                : "https://www.linkedin.com/"
-                            }`}
-                          >
-                            Linkedin
-                          </a>
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/linkedin.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a
+                              href={` ${
+                                isValidLink(formStatus.personal?.linkedin)
+                                  ? formStatus.personal.linkedin
+                                  : "https://www.linkedin.com/"
+                              }`}
+                            >
+                              Linkedin
+                            </a>
+                          </div>
                         )}
                         {formStatus.personal?.github && (
-                          <a
-                            href={` ${
-                              isValidLink(formStatus.personal?.github)
-                                ? formStatus.personal.github
-                                : "https://github.com/"
-                            }`}
-                          >
-                            Github
-                          </a>
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/github.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a
+                              href={` ${
+                                isValidLink(formStatus.personal?.github)
+                                  ? formStatus.personal.github
+                                  : "https://github.com/"
+                              }`}
+                            >
+                              Github
+                            </a>
+                          </div>
                         )}
-                         {formStatus.personal?.instagram && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.instagram)
-                            ? formStatus.personal.instagram
-                            : "https://instagram.com/"
-                        }`}
-                      >
-                      Instagram
-                      </a>
-                    )}
-                      {formStatus.personal?.youtube && (
-                      <a
-                        href={` ${
-                          isValidLink(formStatus.personal?.youtube)
-                            ? formStatus.personal.youtube
-                            : "https://youtube.com/"
-                        }`}
-                      >
-                        Youtube
-                      </a>
-                    )}
+                        {formStatus.personal?.instagram && (
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/instagram.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a
+                              href={` ${
+                                isValidLink(formStatus.personal?.instagram)
+                                  ? formStatus.personal.instagram
+                                  : "https://instagram.com/"
+                              }`}
+                            >
+                              Instagram
+                            </a>
+                          </div>
+                        )}
+                        {formStatus.personal?.youtube && (
+                          <div className="flex gap-1 items-center">
+                            <Image
+                              className="object-contain"
+                              src={"/social/youtube.png"}
+                              width={20}
+                              height={10}
+                              alt="mail"
+                            ></Image>
+                            <a
+                              href={` ${
+                                isValidLink(formStatus.personal?.youtube)
+                                  ? formStatus.personal.youtube
+                                  : "https://youtube.com/"
+                              }`}
+                            >
+                              Youtube
+                            </a>
+                          </div>
+                        )}
                       </div>
                       {formStatus.skills &&
                         formStatus.skills?.skills !== "" && (
@@ -392,8 +445,7 @@ const MyComponent = forwardRef((props, ref) => {
                   </div>
                 </div>
 
-               <div className={styles.line} ></div>
-
+                <div className={styles.line}></div>
 
                 <div className="flex-2 pl-4">
                   <div className=" pt-14 pb-7">
@@ -410,7 +462,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2 ">
                           Objective
                         </h1>
-                        <hr className="pb-2"/>
+                        <hr className="pb-2" />
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.objective?.reason
@@ -427,7 +479,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Education
                         </h1>
-                        <hr className="pb-2"/>
+                        <hr className="pb-2" />
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.education?.reason
@@ -443,7 +495,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Projects
                         </h1>
-                        <hr className="pb-2"/>
+                        <hr className="pb-2" />
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.projects?.reason
@@ -470,7 +522,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Internships
                         </h1>
-                        <hr className="pb-2"/>
+                        <hr className="pb-2" />
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.internships?.reason
@@ -508,7 +560,7 @@ const MyComponent = forwardRef((props, ref) => {
                         <h1 className="font-bold text-[1.5rem] py-2">
                           Achievements
                         </h1>
-                        <hr className="pb-2"/>
+                        <hr className="pb-2" />
                         <h1
                           dangerouslySetInnerHTML={{
                             __html: formStatus.achievements?.one
@@ -531,8 +583,6 @@ const MyComponent = forwardRef((props, ref) => {
                     )}
                 </div>
               </div>
-
-             
 
               <div className="mt-4">
                 <br />

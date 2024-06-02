@@ -48,12 +48,19 @@ const page = () => {
         </h1>
         {/* //<Image src={animate} width={60} height={60} ></Image> */}
       </div>
-      <div className="flex flex-col items-center justify-center p-10">
+      <div className="flex flex-col items-center justify-center p-10 gap-2">
         <h1 className="m-10 text-[2rem] uppercase font-poppins italic font-normal text-center">
           Sample Generated
         </h1>
         <Image
           src={resumereal}
+          width={400}
+          height={400}
+          className="drop-shadow-2xl"
+          alt="sample resume"
+        ></Image>
+         <Image
+          src={"/images/newtemp.png"}
           width={400}
           height={400}
           className="drop-shadow-2xl"
