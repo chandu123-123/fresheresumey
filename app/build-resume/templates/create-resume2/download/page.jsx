@@ -196,7 +196,7 @@ const MyComponent = forwardRef((props, ref) => {
   };
   const handlePrint = useReactToPrint({
     content: () => contentRef.current,
-    pageStyle: `@page {size: A4; margin: 8mm; }  @media print { body { -webkit-print-color-adjust: exact; }}`,
+    pageStyle: `@page {size: A4; margin: 4mm; }  @media print { body { -webkit-print-color-adjust: exact; }}`,
     // onBeforeGetContent: () => {
     //   if (useremail === "") {
     //     setLogin(true);
@@ -229,9 +229,9 @@ const MyComponent = forwardRef((props, ref) => {
         Download
       </button>
 
-      <div className="p-6">
+      <div className="">
         {confirm && (
-          <div className="pt-5 pl-2 border border-gray-300 rounded-lg">
+          <div className=" pl-2 border border-gray-300 rounded-lg">
             <div ref={contentRef}>
               <div className="flex ">
                 {/* style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}} */}
