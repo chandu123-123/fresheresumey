@@ -26,6 +26,8 @@ const Page = () => {
       mobile: "",
       github: "",
       linkedin: "",
+      instagram:"",
+      youtube:"",
     },
     internships: {
       reason: "",
@@ -53,9 +55,8 @@ const Page = () => {
       reason: "",
     },
   });
-  
+
   const handleChange = (section, fieldName, value) => {
-    
     setFormData((prevFormData) => ({
       ...prevFormData,
       [section]: {
@@ -64,66 +65,57 @@ const Page = () => {
       },
     }));
   };
-  // useEffect(() => {
-  //   handleChange("personal", "image", imgUrl);
-  
-  //   setFormData(formstatus);
-  // }, [imgUrl]);
 
   useEffect(() => {
-    setFormData(formstatus);
-   
+    if (formstatus) {
+      setFormData(formstatus);
+    }
   }, [formstatus]);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setstatus("loading");
-    // Access formData object containing all sections
-
     dispatch(setForm(formData));
-    setFormData(formstatus);
-    // Add logic to handle form submission
-
     setstatus("Submit");
-    router.push(`/build-resume/create-resume/download`);
-    // query: { formData: JSON.stringify(formData) },
+    router.push(`/build-resume/templates/create-resume/download`);
   };
 
   const handleimage = (e) => {
     e.preventDefault();
     setImgUrl(null);
-   
     const file = e.target?.files[0];
-    
     if (!file) return;
 
     const storageRef = ref(storage, `files/${file.name}`);
     const uploadTask = uploadBytesResumable(storageRef, file);
- try{
-    uploadTask.on(
-      "state_changed",
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgresspercent(progress);
-      },
-      (error) => {
-        alert("Your file restricting the conditions");
-      },
-      () => {
-        try{ 
-        getDownloadURL(uploadTask.snapshot.ref).then( (downloadURL) => {
-           handleChange("personal", "image", downloadURL);
-        });}
-        catch(err){
-         
+
+    try {
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const progress = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+          setProgresspercent(progress);
+        },
+        (error) => {
+          alert("Your file is restricting the conditions");
+        },
+        () => {
+          try {
+            getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+              handleChange("personal", "image", downloadURL);
+            });
+          } catch (err) {
+            console.log(err);
+          }
         }
-      }
-    );}
-    catch(err){
-      console.log(err)
+      );
+    } catch (err) {
+      console.log(err);
     }
   };
+
   return (
     <div className="p-2 ">
       <form onSubmit={handleSubmit}>
@@ -137,7 +129,7 @@ const Page = () => {
                 <input
                   type="text"
                   placeholder="Your Name"
-                  value={formData?.personal?.name}
+                  value={formData.personal?.name}
                   onChange={(e) =>
                     handleChange("personal", "name", e.target.value)
                   }
@@ -145,7 +137,7 @@ const Page = () => {
                 />
               </div>
               {
-              (formData?.personal?.image || imgUrl)?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
+              (formData.personal?.image || imgUrl)?<><button className="py-5" type="button" onClick={()=>{handleChange("personal", "image", "")}} >Change / Remove Image</button></>:
               <div className="py-5">
                <h1 className="py-2">Image is an Optional (if only compulsory)</h1>
                 <div className="flex flex-col gap-5">
@@ -176,7 +168,7 @@ const Page = () => {
                   <input
                     type="text"
                     placeholder="Mobile"
-                    value={formData?.personal?.mobile}
+                    value={formData.personal?.mobile}
                     onChange={(e) =>
                       handleChange("personal", "mobile", e.target.value)
                     }
@@ -185,7 +177,7 @@ const Page = () => {
                   <input
                     type="text"
                     placeholder="Email"
-                    value={formData?.personal?.email}
+                    value={formData.personal?.email}
                     onChange={(e) =>
                       handleChange("personal", "email", e.target.value)
                     }
@@ -194,7 +186,7 @@ const Page = () => {
                   <input
                     type="text"
                     placeholder="LinkedIn"
-                    value={formData?.personal?.linkedin}
+                    value={formData.personal?.linkedin}
                     onChange={(e) =>
                       handleChange("personal", "linkedin", e.target.value)
                     }
@@ -203,9 +195,27 @@ const Page = () => {
                   <input
                     type="text"
                     placeholder="Github"
-                    value={formData?.personal?.github}
+                    value={formData.personal?.github}
                     onChange={(e) =>
                       handleChange("personal", "github", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                     <input
+                    type="text"
+                    placeholder="Instagram"
+                    value={formData.personal?.instagram}
+                    onChange={(e) =>
+                      handleChange("personal", "instagram", e.target.value)
+                    }
+                    className="bg-white border-2 p-1"
+                  />
+                    <input
+                    type="text"
+                    placeholder="Youtube"
+                    value={formData.personal?.youtube}
+                    onChange={(e) =>
+                      handleChange("personal", "youtube", e.target.value)
                     }
                     className="bg-white border-2 p-1"
                   />
@@ -221,7 +231,7 @@ const Page = () => {
                 type="text"
                 placeholder="Enter if you are applying for a specific role in a Company. Else leave it"
                 rows={6}
-                value={formData?.objective?.reason}
+                value={formData.objective?.reason}
                 onChange={(e) =>
                   handleChange("objective", "reason", e.target.value)
                 }
@@ -237,7 +247,7 @@ const Page = () => {
                 type="text"
                 placeholder="college - cgpa, intermediate - percentage , school - percent"
                 rows={6}
-                value={formData?.education?.reason}
+                value={formData.education?.reason}
                 onChange={(e) =>
                   handleChange("education", "reason", e.target.value)
                 }
@@ -252,7 +262,7 @@ const Page = () => {
               {/* <input
                 type="text"
                 placeholder="skills"
-                value={formData?.skills?.skills}
+                value={formData.skills?.skills}
                 onChange={(e) =>
                   handleChange("skills", "skills", e.target.value)
                 }
@@ -262,7 +272,7 @@ const Page = () => {
                 type="text"
                 placeholder="Example : Html, Css, React, Mongodb, Editing etc"
                 rows={6}
-                value={formData?.skills?.skills}
+                value={formData.skills?.skills}
                 onChange={(e) =>
                   handleChange("skills", "skills", e.target.value)
                 }
@@ -277,7 +287,7 @@ const Page = () => {
               {/* <input
                 type="text"
                 placeholder="skills"
-                value={formData?.skills?.skills}
+                value={formData.skills?.skills}
                 onChange={(e) =>
                   handleChange("skills", "skills", e.target.value)
                 }
@@ -287,7 +297,7 @@ const Page = () => {
                 type="text"
                 placeholder="Languages"
                 rows={6}
-                value={formData?.languages?.reason}
+                value={formData.languages?.reason}
                 onChange={(e) =>
                   handleChange("languages", "reason", e.target.value)
                 }
@@ -304,7 +314,7 @@ const Page = () => {
               <input
                 type="text"
                 placeholder="College Name"
-                value={formData?.education?.collegeName}
+                value={formData.education?.collegeName}
                 onChange={(e) =>
                   handleChange("education", "collegeName", e.target.value)
                 }
@@ -322,7 +332,7 @@ const Page = () => {
                 type="text"
                 placeholder="Internship details"
                 rows={6}
-                value={formData?.internships?.reason}
+                value={formData.internships?.reason}
                 onChange={(e) =>
                   handleChange("internships", "reason", e.target.value)
                 }
@@ -338,7 +348,7 @@ const Page = () => {
                 type="text"
                 placeholder="Projects you have done"
                 rows={6}
-                value={formData?.projects?.reason}
+                value={formData.projects?.reason}
                 onChange={(e) =>
                   handleChange("projects", "reason", e.target.value)
                 }
@@ -357,7 +367,7 @@ const Page = () => {
                 type="text"
                 placeholder="Any achievements till now"
                 rows={6}
-                value={formData?.achievements?.one}
+                value={formData.achievements?.one}
                 onChange={(e) =>
                   handleChange("achievements", "one", e.target.value)
                 }
@@ -373,7 +383,7 @@ const Page = () => {
                 type="text"
                 placeholder="what are your interests"
                 rows={6}
-                value={formData?.interests?.reason}
+                value={formData.interests?.reason}
                 onChange={(e) =>
                   handleChange("interests", "reason", e.target.value)
                 }

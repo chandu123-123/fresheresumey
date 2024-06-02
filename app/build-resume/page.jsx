@@ -70,7 +70,7 @@ const Page = () => {
         </div>
         </div>
         <div className='flex justify-center pt-10'>
-        <Link href="/build-resume/create-resume"><button className="btn btn-warning">Create Now</button></Link>
+        <Link href="/build-resume/templates"><button className="btn btn-warning">Create Now</button></Link>
         </div>
        </div>
 
