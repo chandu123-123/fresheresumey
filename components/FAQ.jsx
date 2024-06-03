@@ -24,6 +24,7 @@ const FAQ = () => {
               </p>
             </div>
           </div>
+          
           <div className="collapse-title text-xl font-medium">
             Is there is refund ?
           </div>
@@ -37,12 +38,10 @@ const FAQ = () => {
         <div className="collapse collapse-arrow bg-white ">
           <input type="radio" name="my-accordion-2" />
           <div className="collapse-title text-xl font-medium">
-            It will work in Iphone
+            Desktop Or Mobile .....
           </div>
           <div className="collapse-content">
-            <p>
-             Better to use in Android or windows
-            </p>
+            <p>Better to use in Desktop to get better output</p>
           </div>
         </div>
         <div className="collapse collapse-arrow ">
