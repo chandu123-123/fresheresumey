@@ -241,6 +241,9 @@ const Page = () => {
                 type="text"
                 placeholder="Enter if you are applying for a specific role in a Company. Else leave it"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.objective?.reason}
                 onChange={(e) =>
                   handleChange("objective", "reason", e.target.value)
@@ -257,6 +260,9 @@ const Page = () => {
                 type="text"
                 placeholder="college - cgpa, intermediate - percentage , school - percent"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.education?.reason}
                 onChange={(e) =>
                   handleChange("education", "reason", e.target.value)
@@ -282,6 +288,9 @@ const Page = () => {
                 type="text"
                 placeholder="Example : Html, Css, React, Mongodb, Editing etc"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.skills?.skills}
                 onChange={(e) =>
                   handleChange("skills", "skills", e.target.value)
@@ -307,6 +316,9 @@ const Page = () => {
                 type="text"
                 placeholder="Languages"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.languages?.reason}
                 onChange={(e) =>
                   handleChange("languages", "reason", e.target.value)
@@ -342,6 +354,9 @@ const Page = () => {
                 type="text"
                 placeholder="Internship details"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.internships?.reason}
                 onChange={(e) =>
                   handleChange("internships", "reason", e.target.value)
@@ -358,6 +373,9 @@ const Page = () => {
                 type="text"
                 placeholder="Projects you have done"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.projects?.reason}
                 onChange={(e) =>
                   handleChange("projects", "reason", e.target.value)
@@ -377,6 +395,9 @@ const Page = () => {
                 type="text"
                 placeholder="Any achievements till now"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.achievements?.one}
                 onChange={(e) =>
                   handleChange("achievements", "one", e.target.value)
@@ -393,6 +414,9 @@ const Page = () => {
                 type="text"
                 placeholder="what are your interests"
                 rows={6}
+                
+                cols={30} 
+                style={{ maxWidth: "54em" }} 
                 value={formData?.interests?.reason}
                 onChange={(e) =>
                   handleChange("interests", "reason", e.target.value)

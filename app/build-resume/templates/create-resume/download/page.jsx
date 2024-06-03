@@ -228,9 +228,9 @@ const MyComponent = forwardRef((props, ref) => {
         Download
       </button>
 
-      <div className="p-6">
+      <div className="p-6 overflow-x-auto flex justify-center">
         {confirm && (
-          <div className="pt-5 pl-3 border border-gray-300 rounded-lg">
+          <div className="pt-5 pl-3 border border-gray-300 rounded-lg w-[75%]">
             <div ref={contentRef}>
               <div className="flex pb-5">
                 <div className="pt-2 flex flex-col gap-2 mr-2 ">
@@ -243,7 +243,7 @@ const MyComponent = forwardRef((props, ref) => {
                   </div>
                   <div className="flex gap-3 flex-wrap">
                     {formStatus.personal?.mobile && (
-                        <div className="flex gap-1 items-center">
+                      <div className="flex gap-1 items-center">
                         <Image
                           className="object-contain"
                           src={"/social/telephone.png"}
@@ -251,10 +251,10 @@ const MyComponent = forwardRef((props, ref) => {
                           height={10}
                           alt="mail"
                         ></Image>
-                      <a href={`tel:${formStatus.personal?.mobile}`}>
-                        {formStatus.personal?.mobile}
-                      </a>
-                    </div>
+                        <a href={`tel:${formStatus.personal?.mobile}`}>
+                          {formStatus.personal?.mobile}
+                        </a>
+                      </div>
                     )}
                     {formStatus.personal && (
                       <div className="flex gap-1 items-center">
@@ -368,37 +368,86 @@ const MyComponent = forwardRef((props, ref) => {
                 </div>
               </div>
               <hr className="pt-1" />
-              
-                {formStatus.objective && formStatus.objective.reason !== "" && (
+
+              {formStatus.objective && formStatus.objective.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.objective?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.education && formStatus.education.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.education?.reason
+                        ?.replace(/ /g, "&nbsp;")
+                        ?.replace(/\n/g, "<br />"),
+                    }}
+                  ></h1>
+                </div>
+              )}
+              {formStatus.skills && formStatus.skills?.skills !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.skills?.skills
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+              {formStatus.languages && formStatus.languages?.reason !== "" && (
+                <div>
+                  <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
+                  <h1
+                    dangerouslySetInnerHTML={{
+                      __html: formStatus.languages?.reason
+                        ?.split(/(\s+)/)
+                        .map((part) => {
+                          if (/^https?:\/\/\S+$/.test(part)) {
+                            return `<a href="${part}" target="_blank" class="underline">Link</a>`;
+                          } else if (/\s+/.test(part)) {
+                            return part
+                              .replace(/ /g, "&nbsp;")
+                              .replace(/\n/g, "<br />");
+                          } else {
+                            return part;
+                          }
+                        })
+                        .join(""),
+                    }}
+                  />
+                </div>
+              )}
+              {formStatus.internships &&
+                formStatus.internships?.reason !== "" && (
                   <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
+                    <h1 className="font-bold text-[1.5rem] py-2">
+                      Internships
+                    </h1>
                     <h1
                       dangerouslySetInnerHTML={{
-                        __html: formStatus.objective?.reason
-                          ?.replace(/ /g, "&nbsp;")
-                          ?.replace(/\n/g, "<br />"),
-                      }}
-                    ></h1>
-                  </div>
-                )}
-                {formStatus.education && formStatus.education.reason !== "" && (
-                  <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
-                    <h1
-                      dangerouslySetInnerHTML={{
-                        __html: formStatus.education?.reason
-                          ?.replace(/ /g, "&nbsp;")
-                          ?.replace(/\n/g, "<br />"),
-                      }}
-                    ></h1>
-                  </div>
-                )}
-                {formStatus.skills && formStatus.skills?.skills !== "" && (
-                  <div>
-                    <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
-                    <h1
-                      dangerouslySetInnerHTML={{
-                        __html: formStatus.skills?.skills
+                        __html: formStatus.internships?.reason
                           ?.split(/(\s+)/)
                           .map((part) => {
                             if (/^https?:\/\/\S+$/.test(part)) {
@@ -414,55 +463,7 @@ const MyComponent = forwardRef((props, ref) => {
                           .join(""),
                       }}
                     />
-                  </div>
-                )}
-                {formStatus.languages &&
-                  formStatus.languages?.reason !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.languages?.reason
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                    </div>
-                  )}
-                {formStatus.internships &&
-                  formStatus.internships?.reason !== "" && (
-                    <div>
-                      <h1 className="font-bold text-[1.5rem] py-2">Internships</h1>
-                      <h1
-                        dangerouslySetInnerHTML={{
-                          __html: formStatus.internships?.reason
-                            ?.split(/(\s+)/)
-                            .map((part) => {
-                              if (/^https?:\/\/\S+$/.test(part)) {
-                                return `<a href="${part}" target="_blank" class="underline">Link</a>`;
-                              } else if (/\s+/.test(part)) {
-                                return part
-                                  .replace(/ /g, "&nbsp;")
-                                  .replace(/\n/g, "<br />");
-                              } else {
-                                return part;
-                              }
-                            })
-                            .join(""),
-                        }}
-                      />
-                      {/* <h1
+                    {/* <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason?.replace(
                           /\n/g,

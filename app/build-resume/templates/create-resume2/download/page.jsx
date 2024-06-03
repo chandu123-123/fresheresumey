@@ -229,13 +229,13 @@ const MyComponent = forwardRef((props, ref) => {
         Download
       </button>
 
-      <div className="">
+      <div className="flex justify-center">
         {confirm && (
-          <div className=" pl-2 border border-gray-300 rounded-lg">
-            <div ref={contentRef}>
+          <div className=" pl-2 border border-gray-300 rounded-lg w-[75%] max-h-[100rem] overflow-hidden">
+            <div style={{ pageBreakInside: "avoid", pageBreakAfter: "always" }}  ref={contentRef}>
               <div className="flex ">
                 {/* style={{ backgroundColor:'#12288D ',color:'white', width:'25%', height:'87rem'}} */}
-                <div className="  w-auto mr-3">
+                <div className="  max-w-72  mr-3">
                   <div className="mr-8 mt-8 flex justify-center h-28">
                     {formStatus.personal?.image && (
                       // <h1 className="font-bold text-[1.7rem] uppercase">
@@ -369,7 +369,7 @@ const MyComponent = forwardRef((props, ref) => {
                             <h1 className="font-bold text-[1.5rem] pb-2">
                               Skills
                             </h1>
-                            <h1
+                            <h1 className="flex "
                               dangerouslySetInnerHTML={{
                                 __html: formStatus.skills?.skills
                                   ?.split(/(\s+)/)
