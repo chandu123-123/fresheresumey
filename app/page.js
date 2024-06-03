@@ -76,7 +76,7 @@ const page = () => {
 <video src="/videos/final_1.mp4" className="px-10 sm:px-52 py-10" autoPlay  controls ></video>
 
 <h1 className="text-[4rem] flex font-poppins font-semibold italic text-center items-center justify-center uppercase">
-  How to do 
+  How To Create Your Resume  
 </h1>
 </div>
       <FAQ></FAQ>
