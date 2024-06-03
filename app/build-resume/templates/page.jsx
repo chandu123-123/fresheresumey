@@ -14,12 +14,12 @@ const Page = () => {
     }
   }, [userloginstatus]);
   return (
-    <div className="flex flex-col items-center sm:flex-row gap-10 p-10 justify-center">
-      <div className="flex flex-col justify-center gap-5 font-poppins">
-        <button
-          onClick={() => {
+    <div className="flex flex-col items-center sm:flex-row gap-10 p-10 justify-center cursor-pointer">
+      <div className="flex flex-col justify-center gap-5 font-poppins" onClick={() => {
             router.push(`/build-resume/templates/create-resume`);
-          }}
+          }}>
+        <button
+          
         >
           Template 1
         </button>
@@ -31,11 +31,11 @@ const Page = () => {
           alt="template1"
         ></Image>
       </div>
-      <div className="flex flex-col justify-center gap-5 font-poppins">
-        <button
-          onClick={() => {
+      <div className="flex flex-col justify-center gap-5 font-poppins cursor-pointer"  onClick={() => {
             router.push(`/build-resume/templates/create-resume2`);
-          }}
+          }}>
+        <button
+         
         >
           Template 2
         </button>
