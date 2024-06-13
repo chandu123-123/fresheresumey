@@ -367,11 +367,12 @@ const MyComponent = forwardRef((props, ref) => {
                   )}
                 </div>
               </div>
-              <hr className="pt-1" />
+              {/* <hr className="pt-1" /> */}
 
               {formStatus.objective && formStatus.objective.reason !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem] py-2">Objective</h1>
+                  <hr className="pb-2" />
                   <h1
                     dangerouslySetInnerHTML={{
                       __html: formStatus.objective?.reason
@@ -384,6 +385,7 @@ const MyComponent = forwardRef((props, ref) => {
               {formStatus.education && formStatus.education.reason !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem] py-2">Education</h1>
+                  <hr className="pb-2" />
                   <h1
                     dangerouslySetInnerHTML={{
                       __html: formStatus.education?.reason
@@ -396,6 +398,7 @@ const MyComponent = forwardRef((props, ref) => {
               {formStatus.skills && formStatus.skills?.skills !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem] py-2">Skills</h1>
+                  <hr className="pb-2" />
                   <h1
                     dangerouslySetInnerHTML={{
                       __html: formStatus.skills?.skills
@@ -419,6 +422,7 @@ const MyComponent = forwardRef((props, ref) => {
               {formStatus.languages && formStatus.languages?.reason !== "" && (
                 <div>
                   <h1 className="font-bold text-[1.5rem] py-2">Languages</h1>
+                  <hr className="pb-2" />
                   <h1
                     dangerouslySetInnerHTML={{
                       __html: formStatus.languages?.reason
@@ -445,6 +449,7 @@ const MyComponent = forwardRef((props, ref) => {
                     <h1 className="font-bold text-[1.5rem] py-2">
                       Internships
                     </h1>
+                    <hr className="pb-2" />
                     <h1
                       dangerouslySetInnerHTML={{
                         __html: formStatus.internships?.reason
