@@ -22,7 +22,7 @@ const Page = () => {
     email: "",
     password: "",
   });
-  if(useremail.length!=0){
+  if(useremail && useremail.length!=0){
        router.push("/")
   }
   const handleChange = (e) => {
@@ -58,7 +58,7 @@ const Page = () => {
              dispatch(increment())
            setsigninalert(true)
            if(data.paid==true){
-          dispatch(setPaid())
+             dispatch(setPaid())
            }
            else{
             dispatch(setunPaid())

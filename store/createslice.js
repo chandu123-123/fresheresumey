@@ -23,7 +23,7 @@ export const counterSlice = createSlice({
       state.form = action.payload;
     },
     setPaid: (state) => {
-      return { ...state, paid:true };
+      state.paid = true;  // Directly mutate the state
     },
     setunPaid: (state) => {
       return { ...state, paid:false };

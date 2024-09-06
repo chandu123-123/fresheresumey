@@ -2,19 +2,57 @@
 import React, { useEffect } from 'react'
 import Image from "next/image";
 import Link from "next/link";
-import { increment,decrement } from "@/store/createslice";
+import { increment,decrement, setPaid } from "@/store/createslice";
 import { redirect, useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 const Page = () => {
   const router =useRouter()
   const dispatch = useDispatch();
   const userloginstatus = useSelector((state) => state.counter.value);
-  
+  const useremail = useSelector((state) => state.counter.email);
+  const userpaid = useSelector((state) => state.counter.paid);
+
+
   const write="/buildresume/write.png"
   const select="/buildresume/select.png"
   const download="/buildresume/download.png"
+
+
+  useEffect(() => {
+    console.log(useremail)
+    const make = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/updatecredits`, {
+          method: "POST",
+          mode: "no-cors",
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ useremail }),
+        });
+        // Handle response if needed
+        const resu=await response.json();
+        console.log(resu)
+        console.log(userpaid)
+        if(!userpaid){
+           dispatch(setPaid())
+        }
+      } catch (error) {
+        console.error('Error with payment request:', error);
+      }
+    };
+
+    make();
+  }, []);
+
+
+
+
   useEffect(() => {
     
+     
+
+
     if (!userloginstatus) {
     setTimeout(async () => {
        
