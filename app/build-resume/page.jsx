@@ -32,9 +32,10 @@ const Page = () => {
         });
         // Handle response if needed
         const resu=await response.json();
-        console.log(resu)
+        console.log(resu[0])
         console.log(userpaid)
-        if(!userpaid){
+        if(!userpaid && resu[0].paid){
+          console.log("hello")
            dispatch(setPaid())
         }
       } catch (error) {

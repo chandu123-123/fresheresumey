@@ -29,11 +29,11 @@ export async function POST(req) {
       // Add your logic here for handling the order created event
       // e.g., updating the database, sending a confirmation email, etc.
     if(isSuccessful){
-        console.log(body.data.attributes)
+        console.log(body.meta.custom_data.user_email)
       const res2= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/updatepaid`, {
         method: "POST",
         body: JSON.stringify({
-          email:body.data.attributes.user_email
+          email:body.meta.custom_data.user_email
         }),
       });
        const cred2=await res2.json();
