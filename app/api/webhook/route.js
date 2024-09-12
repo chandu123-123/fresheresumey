@@ -1,3 +1,5 @@
+import { dbconnection } from '@/lib/database';
+import { userlogin } from '@/lib/model';
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
 
@@ -29,15 +31,12 @@ export async function POST(req) {
       // Add your logic here for handling the order created event
       // e.g., updating the database, sending a confirmation email, etc.
     if(isSuccessful){
+      await dbconnection()
         console.log(body.meta.custom_data.user_email)
-      const res2= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/updatepaid`, {
-        method: "POST",
-        body: JSON.stringify({
-          email:body.meta.custom_data.user_email
-        }),
-      });
-       const cred2=await res2.json();
-       console.log(cred2);
+        let email=body.meta.custom_data.user_email
+        const user=await userlogin.find({email})
+        console.log(user);
+        await userlogin.updateOne({email},{paid:true})
   
     }}
 
