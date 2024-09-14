@@ -12,6 +12,7 @@ const Page = () => {
  const [successnew,setsuccessnew]=useState(false)
  const [newpassword,setnewpassword]=useState("")
  const [otpgenerated,setotpgenerated]=useState(false);
+ const [transfer,settransfer]=useState(false);
  const [otp,setotp]=useState("")
  const [load,setload]=useState(false)
  const [otpcheck,setotpcheck]=useState({
@@ -26,15 +27,21 @@ const handlenewpass=(e)=>{
     
 }
 const update=async (e)=>{
+
     e.preventDefault()
-  //  console.log(newpassword)
+    console.log(otpcheck)
+    console.log(otpgenerated)
+    //  console.log(newpassword)
     const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/updatepassword`,{
         method:"POST",
         mode:"no-cors",
-      body:JSON.stringify({newpassword,email:formData.email})
+      body:JSON.stringify({newpassword,email:formData.email,transfer,otpgenerated})
     })
+    console.log("hello")
+    if(!res.ok){
+         throw new Error("something is wrong")
+    }
     const data=await res.json()
-  //  console.log(data)
     if(data.msg=="success"){
         seterr("updated successfully")
       //  console.log("check");
@@ -42,7 +49,6 @@ const update=async (e)=>{
             seterr("")
             router.push("/sign-in")
         },2000)
-        
     }
     else{
       seterr(data.msg||"something wrong")
@@ -60,7 +66,7 @@ const update=async (e)=>{
    
   };
   const handleOtpChange =async (e) => {
-   
+    settransfer(e.target.value)
     const hashedotp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(e.target.value).digest("hex");
     seterr("")
     setotpcheck(hashedotp);
@@ -72,9 +78,7 @@ const update=async (e)=>{
  setsuccessnew(false)
 setload(true)
  console.log(formData)
-   // setstatus(formData)
      try {
-       
        const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/forgot`,{
            method:"POST",
            mode:"no-cors",
@@ -127,10 +131,9 @@ const verify=async (e)=>{
   if(otpcheck==otpgenerated){
 
    
-      //  router.push("/newpassword")
-        //router.push("/sign-in")
+     
        setsuccessnew(true)
-      // Get the message from the response
+      
 
   }
   else{
