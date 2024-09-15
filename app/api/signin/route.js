@@ -18,7 +18,6 @@ export async function POST(req,res){
     
        if(user.length!=0){
        const check=await bcrypt.compare(password,user[0].password);
-      
        if(check){
        return NextResponse.json({msg:"success",email,paid:user[0].paid})
        }
@@ -34,5 +33,4 @@ export async function POST(req,res){
        catch(err){
         return NextResponse.json({msg:`${err}`})
        }
-       
 }

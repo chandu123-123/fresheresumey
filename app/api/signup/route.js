@@ -2,12 +2,18 @@ import { dbconnection } from "@/lib/database";
 import { NextResponse } from "next/server";
 import {userlogin} from "@/lib/model"
 import bcrypt from "bcrypt" 
+import crypto from "crypto";
 export async function POST(req, res) {
   
   const data = await req.json();
-  const {formData}=data
+  const {formData,otpgenerated,targetotp}=data
+  console.log(otpgenerated,targetotp)
+  const hashedotp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(targetotp).digest("hex");
+ if(otpgenerated!=hashedotp){
+  console.log("hello")
+  return NextResponse.json({ msg: "Something is Wrong" });
+ }
   const {username,email,password}=formData
-  
   await dbconnection();
   try{
   const user=await userlogin.find({email})
@@ -26,7 +32,5 @@ export async function POST(req, res) {
 }
   catch(err){
     return NextResponse.json({ msg: `${err}` });
-  }
-  
-  
+  } 
 }

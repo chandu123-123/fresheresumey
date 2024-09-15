@@ -14,6 +14,7 @@ const Page = () => {
  const [otp,setotp]=useState(false);
  const [status,setstatus]=useState("Submit");
  const [otpgenerated,setotpgenerated]=useState(false);
+ const [targetotp,settargetotp]=useState(false);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -80,9 +81,8 @@ setotpgenerated(nodotp.secret)
     }
   };
   const handleOtpChange =async (e) => {
-   
+   settargetotp(e.target.value)
     const hashedotp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(e.target.value).digest("hex");
-    
     setotpcheck(hashedotp);
   };
 const verify=async (e)=>{
@@ -96,8 +96,9 @@ if(otpcheck===otpgenerated){
      
     const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/signup`,{
       method:"POST",
-      body:JSON.stringify({formData})
+      body:JSON.stringify({formData,otpgenerated,targetotp})
      })
+   
      const data=await res.json()
     // console.log(data)
      if(data.msg==="success"){
@@ -112,7 +113,7 @@ if(otpcheck===otpgenerated){
      }
     // Get the message from the response
 } catch (error) {
-  
+  seterr(data.msg)
   // Handle signup failure
 }
 }

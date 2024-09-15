@@ -6,7 +6,7 @@ export async function POST(req, res) {
   const data = await req.json();
   const {formData}=data
   const {username,email,password}=formData
-  
+
  await dbconnection()
   try{
   const user=await userlogin.find({email})
