@@ -2,6 +2,7 @@
 import { dbconnection } from "@/lib/database";
 import { userlogin } from "@/lib/model";
 import bcrypt from "bcrypt"
+import { isEmail } from 'validator';
 import { NextResponse } from "next/server";
 export async function POST(req,res){
     const data=await req.json()
@@ -9,6 +10,9 @@ export async function POST(req,res){
      
        await dbconnection()
        const {email,password}=(data.formData)
+       if (!isEmail(email)) {
+        return NextResponse.json({ msg: "Invalid email format" }, { status: 400 });
+      }
        try{
         
         if (!password) {
