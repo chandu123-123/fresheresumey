@@ -5,46 +5,59 @@ import { NextResponse } from 'next/server';
 
 export async function POST(req) {
   try {
-    // Catch the event type
+    console.log("hello")
     const clonedReq = req.clone();
-    const eventType = req.headers.get('X-Event-Name');  // assuming 'X-Name' is the header for event type
-    const body = await req.json();  // parsing JSON body
+    const rawBody = await clonedReq.text();
+    
+    const razorpayEventType = req.headers.get('X-Razorpay-Event');
+    const razorpaySignature = req.headers.get('X-Razorpay-Signature');
 
-    // Check signature
-    const secret = process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE;
-    const hmac = crypto.createHmac('sha256', secret);
-    const digest = Buffer.from(hmac.update(await clonedReq.text()).digest('hex'), 'utf8');
-    const signature = Buffer.from(req.headers.get('X-Signature') || '', 'utf8');
+    const webhookSecret = process.env.NEXT_PUBLIC_SECRET;
 
-    if (!crypto.timingSafeEqual(digest, signature)) {
-      throw new Error('Invalid signature.');
+    const hmac = crypto.createHmac('sha256', webhookSecret);
+    hmac.update(rawBody);
+    const generatedSignature = hmac.digest('hex');
+
+    if (razorpaySignature !== generatedSignature) {
+      throw new Error('Invalid Razorpay signature');
     }
 
-    console.log(body);
+    // Parse the webhook payload
+    const body = JSON.parse(rawBody);
+    const notes = body.payload.order.entity.notes; // Access the notes field
+    const userEmail = notes.userEmail;
 
-    // Logic according to event type
-    if (eventType === 'order_created') {
-        console.log("hello")
-      const userId = body.meta.custom_data.user_id;
-      const isSuccessful = body.data.attributes.status === 'paid';
-      console.log(isSuccessful)
-      // Add your logic here for handling the order created event
-      // e.g., updating the database, sending a confirmation email, etc.
-    if(isSuccessful){
-      await dbconnection()
-        console.log(body.meta.custom_data.user_email)
-        let email=body.meta.custom_data.user_email
-        const user=await userlogin.find({email})
-        console.log(user);
-        await userlogin.updateOne({email},{paid:true})
-  
-    }}
+    console.log(`Webhook event received: ${razorpayEventType}`, body);
 
-    // Respond with success
-    return NextResponse.json({ message: 'webhooks processed successfully' })
+    // Event Handling
+    if (razorpayEventType === 'order.paid') {
+      const orderId = body.payload.order.entity.id;
+      const status = body.payload.order.entity.status;
+      
+      // Ensure the order is marked as "paid"
+      if (status === 'paid') {
+        const email = userEmail; // Assuming custom notes contain the user's email
+        console.log(`Processing payment for email: ${email}`);
+
+        // Connect to the database and update the user record
+        await dbconnection();
+        const user = await userlogin.findOne({ email });
+
+        if (user) {
+          console.log(`User found: ${user}`);
+          await userlogin.updateOne({ email }, { paid: true });
+          console.log(`User payment status updated for email: ${email}`);
+        } else {
+          console.error(`User not found for email: ${email}`);
+        }
+      }
+    }
+
+    // Respond to Razorpay
+    return NextResponse.json({ message: 'Webhook processed successfully' });
 
   } catch (err) {
-    console.error(err);
-    return NextResponse.json({ message: 'Server error' })
+    console.error('Error processing webhook:', err.message);
+    return NextResponse.json({ message: 'Error processing webhook' }, { status: 500 });
   }
 }
