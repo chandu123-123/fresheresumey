@@ -2,7 +2,6 @@ import { dbconnection } from '@/lib/database';
 import { userlogin } from '@/lib/model';
 import crypto from 'crypto';
 import { NextResponse } from 'next/server';
-
 export async function POST(req) {
   try {
     console.log("hello")
