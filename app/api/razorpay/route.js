@@ -12,7 +12,7 @@ export async function POST(req) {
     const { useremail} = body;
     console.log(body)
     const payment_capture = 1;
-    const amount = 1 * 2500 // amount in paisa. In our case it's INR 1
+    const amount = 1 * 5000 // amount in paisa. In our case it's INR 1
     const currency = "INR";
     const options = {
         amount: (amount).toString(),
