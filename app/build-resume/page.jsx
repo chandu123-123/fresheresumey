@@ -32,9 +32,9 @@ const Page = () => {
         });
         // Handle response if needed
         const resu=await response.json();
-        console.log(resu)
-        
-        if(resu.paid){
+        console.log(resu.userdetails.paid)
+        // console.log(resu)
+        if(resu.userdetails.paid){
           console.log("hello")
            dispatch(setPaid())
         }
