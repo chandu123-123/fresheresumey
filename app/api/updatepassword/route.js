@@ -10,7 +10,7 @@ export async function POST(req,res){
       //console.log(data)
       const pass=data.newpassword
       const {transfer,otpgenerated}=data
-      const hashedot =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(transfer).digest("hex");
+      const hashedot =await  crypto.createHash("sha256",process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE).update(transfer).digest("hex");
       if(hashedot!=otpgenerated){
         return NextResponse.json({msg:"something is wrong try again"})
       }

@@ -8,7 +8,7 @@ export async function POST(req, res) {
   const data = await req.json();
   const {formData,otpgenerated,targetotp}=data
   console.log(otpgenerated,targetotp)
-  const hashedotp =await  crypto.createHash("sha256",process.env.NEXT_PUBLIC_SECRET).update(targetotp).digest("hex");
+  const hashedotp =await  crypto.createHash("sha256",process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE).update(targetotp).digest("hex");
  if(otpgenerated!=hashedotp){
   console.log("hello")
   return NextResponse.json({ msg: "Something is Wrong" });

@@ -12,7 +12,7 @@ export async function POST(req) {
     const razorpayEventType = req.headers.get('X-Razorpay-Event');
     const razorpaySignature = req.headers.get('X-Razorpay-Signature');
 
-    const webhookSecret = process.env.NEXT_PUBLIC_SECRET;
+    const webhookSecret = process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE;
 
     const hmac = crypto.createHmac('sha256', webhookSecret);
     hmac.update(rawBody);

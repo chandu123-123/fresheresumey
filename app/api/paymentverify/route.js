@@ -18,7 +18,7 @@ export async function POST(req,res) {
 //console.log("id==",body)
 
  const expectedSignature = crypto
-   .createHmac("sha256", process.env.NEXT_PUBLIC_SECRET)
+   .createHmac("sha256", process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE)
    .update(body.toString())
    .digest("hex");
 

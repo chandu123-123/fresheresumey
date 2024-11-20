@@ -32,7 +32,7 @@ export async function POST(req, res) {
   try {
     await transporter.sendMail(mailOptions);
     const hashedOtp = await crypto
-      .createHash("sha256", process.env.NEXT_PUBLIC_SECRET)
+      .createHash("sha256", process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE)
       .update(otp)
       .digest("hex");
     return NextResponse.json({ msg: "success", secret: hashedOtp });
