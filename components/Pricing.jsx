@@ -98,7 +98,7 @@ const Pricing = () => {
 
           <div className="mt-8">
           <div className="mt-4">
-        <BuyProduct />
+        {/* <BuyProduct /> */}
       </div>
           </div>
 
