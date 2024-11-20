@@ -7,10 +7,11 @@ export async function POST(req) {
     console.log("hello")
     const clonedReq = req.clone();
     const rawBody = await clonedReq.text();
-    
-    const razorpayEventType = req.headers.get('X-Razorpay-Event');
-    const razorpaySignature = req.headers.get('X-Razorpay-Signature');
-
+    console.log(req.headers)
+    const razorpayEventType = req.headers.get('X-Razorpay-event-id');
+    const razorpaySignature = req.headers.get('X-Razorpay-signature');
+    console.log(razorpayEventType)
+    console.log(razorpaySignature)
     const webhookSecret = process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE;
 
     const hmac = crypto.createHmac('sha256', webhookSecret);
@@ -24,24 +25,28 @@ export async function POST(req) {
     // Parse the webhook payload
     const body = JSON.parse(rawBody);
     const notes = body.payload.order.entity.notes; // Access the notes field
-    const userEmail = notes.userEmail;
-
+    const userEmail = body.payload.order.entity.notes.userEmail;
+    const email = body.payload.order.entity.notes.userEmail;
     console.log(`Webhook event received: ${razorpayEventType}`, body);
+    console.log(body.payload.order.entity.notes,email)
+    console.log("dsdddfdf");
+    console.log(body.payload.payment.entity)
 
     // Event Handling
-    if (razorpayEventType === 'order.paid') {
+    if (body.event === 'order.paid') {
       const orderId = body.payload.order.entity.id;
-      const status = body.payload.order.entity.status;
-      
+      const status = body.payload.payment.entity.status;
+      console.log(status,"paiddd",body.payload.payment.entity)
+      console.log(body.payload.order.entity.status)
       // Ensure the order is marked as "paid"
-      if (status === 'paid') {
-        const email = userEmail; // Assuming custom notes contain the user's email
+      if (status === 'captured') {
+        // Assuming custom notes contain the user's email
         console.log(`Processing payment for email: ${email}`);
-
+      
         // Connect to the database and update the user record
         await dbconnection();
         const user = await userlogin.findOne({ email });
-
+            console.log(user,"jherejrejl")
         if (user) {
           console.log(`User found: ${user}`);
           await userlogin.updateOne({ email }, { paid: true });

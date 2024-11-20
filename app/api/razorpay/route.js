@@ -9,7 +9,8 @@ const instance = new Razorpay({
   console.log("hello")
 export async function POST(req) {
     const body = await req.json(); // Parse the request body to get dynamic data
-    const { email} = body;
+    const { useremail} = body;
+    console.log(body)
     const payment_capture = 1;
     const amount = 1 * 2500 // amount in paisa. In our case it's INR 1
     const currency = "INR";
@@ -24,7 +25,7 @@ export async function POST(req) {
             paymentFor: "Fresheresume",
             userId: "100",
             productId: 'P100',
-            userEmail: email,
+            userEmail: `${useremail}`,
         }
     };
    const order = await instance.orders.create(options);

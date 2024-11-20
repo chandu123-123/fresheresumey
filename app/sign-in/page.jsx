@@ -39,6 +39,7 @@ const Page = () => {
     
     e.preventDefault();
     setstatus("loading")
+    console.log("dfdfsdf")
     try {
        
         const res= await fetch(`${process.env.NEXT_PUBLIC_LOCALURL}api/signin`,{
@@ -50,7 +51,7 @@ const Page = () => {
          setstatus("Submit")
         
          if(data.msg==="success"){
-       
+       console.log("bhaii")
             seterr("")
             //console.log(useremail)
             dispatch(setemail(data.email));

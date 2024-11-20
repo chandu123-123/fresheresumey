@@ -11,7 +11,7 @@ const instance = new Razorpay({
   });
 
 export async function POST(req,res) {
-    
+    console.log("paymentntntntn")
     const { razorpay_order_id, razorpay_payment_id, razorpay_signature } =
   await req.json();
    const body = razorpay_order_id + "|" + razorpay_payment_id;

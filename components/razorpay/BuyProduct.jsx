@@ -48,15 +48,11 @@ if (!order) {
       handler: async function (response) {
         // if (response.length==0) return <Loading/>;
       //  console.log(response);
-        if(response.razorpay_payment_id){
-        // console.log(response.razorpay_payment_id)
-          dispatch(setPaid())
-        }
         const data = await  fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/paymentverify`, {
           method: "POST",
-          // headers: {
-          //   // Authorization: 'YOUR_AUTH_HERE'
-          // },
+          headers: {
+            "Content-Type": "application/json",
+          },
           body: JSON.stringify({
             razorpay_payment_id: response.razorpay_payment_id,
             razorpay_order_id: response.razorpay_order_id,
@@ -85,7 +81,7 @@ if (!order) {
         //  else{
         //   dispatch(setunPaid())
         //  }
-        //  console.log("redirected.......")
+          console.log("redirected.......")
 
           router.push(`${process.env.NEXT_PUBLIC_LOCALURL}/build-resume`)
 
@@ -101,7 +97,7 @@ if (!order) {
         email: useremail,
       },
     };
-
+console.log("rammu")
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
 
