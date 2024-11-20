@@ -87,7 +87,7 @@ if (!order) {
         //  }
         //  console.log("redirected.......")
 
-          router.push(`${process.env.NEXT_PUBLIC_LOCALURL}/paymentsuccess?paymentid=`+response.razorpay_payment_id)
+          router.push(`${process.env.NEXT_PUBLIC_LOCALURL}/build-resume`)
 
         }
 
