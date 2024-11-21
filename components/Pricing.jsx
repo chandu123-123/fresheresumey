@@ -102,9 +102,7 @@ const Pricing = () => {
       </div>
           </div>
 
-          <div className="mt-6 text-center text-sm text-gray-500">
-            Secure payment processed by Lemon Squeezy
-          </div>
+        
         </div>
       </div>
       
