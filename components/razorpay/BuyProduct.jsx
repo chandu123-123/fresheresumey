@@ -48,6 +48,7 @@ if (!order) {
       handler: async function (response) {
         // if (response.length==0) return <Loading/>;
       //  console.log(response);
+      console.log("paymentverifybefore")
         const data = await  fetch(`${process.env.NEXT_PUBLIC_LOCALURL}/api/paymentverify`, {
           method: "POST",
           headers: {
@@ -61,11 +62,11 @@ if (!order) {
         });
 
 
-
+        console.log("paymentverifyafter")
         const res = await data.json();
 
        // console.log("response verify==",res)
-
+       console.log(res)
         if(res?.message=="success")
         {
           
@@ -97,7 +98,7 @@ if (!order) {
         email: useremail,
       },
     };
-console.log("rammu")
+     console.log("rammu")
     const paymentObject = new window.Razorpay(options);
     paymentObject.open();
 

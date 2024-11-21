@@ -18,10 +18,10 @@ export async function POST(req,res) {
 //console.log("id==",body)
 
  const expectedSignature = crypto
-   .createHmac("sha256", process.env.LEMON_SQUEEZY_WEBHOOK_SIGNATURE)
+   .createHmac("sha256", process.env.RAZORPAY_API_SECRET)
    .update(body.toString())
    .digest("hex");
-
+//console.log(expectedSignature,"dsfsdfasdf",razorpay_signature)
 const isAuthentic = expectedSignature === razorpay_signature;
 
 

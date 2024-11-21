@@ -35,7 +35,7 @@ const Page = () => {
         console.log(resu.userdetails.paid)
         // console.log(resu)
         if(resu.userdetails.paid){
-          console.log("hello")
+        //  console.log("hello")
            dispatch(setPaid())
         }
       } catch (error) {
