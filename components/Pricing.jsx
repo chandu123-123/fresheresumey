@@ -81,7 +81,7 @@ const Pricing = () => {
             </span>
           </div>
           <div className="mt-4 flex justify-center">
-            <span className="text-5xl font-extrabold text-gray-900">₹1</span>
+            <span className="text-5xl font-extrabold text-gray-900">₹50</span>
             <span className="ml-1 text-xl font-semibold text-gray-500 self-end">/only once</span>
           </div>
         </div>
@@ -98,7 +98,7 @@ const Pricing = () => {
 
           <div className="mt-8">
           <div className="mt-4">
-        <BuyProduct />
+        {/* <BuyProduct /> */}
       </div>
           </div>
 
